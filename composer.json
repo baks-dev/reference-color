@@ -1,0 +1,42 @@
+{
+  "name": "baks-dev/reference-color",
+  "description": "Библиотека Color",
+  "homepage": "https://github.com/baks-dev/reference-color",
+  "keywords": ["bundle", "symfony", "library", "reference", "color"],
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Baks Development",
+      "email": "admin@baks.dev"
+    }
+  ],
+
+  "require": {
+    "php": ">=8.1",
+    "baks-dev/settings-main": "^1.0"
+  },
+
+  "require-dev": {
+    "roave/security-advisories": "dev-latest"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "BaksDev\\Reference\\Color\\": ""
+    }
+  },
+
+  "autoload-dev": {
+    "psr-4": {
+      "BaksDev\\Reference\\Color\\": "Tests/"
+    }
+  },
+
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "symfony/flex": true
+    }
+  }
+}
