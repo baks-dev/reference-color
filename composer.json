@@ -7,7 +7,8 @@
     "symfony",
     "library",
     "reference",
-    "color"
+    "color",
+    "baks"
   ],
   "license": "MIT",
   "type": "symfony-bundle",
