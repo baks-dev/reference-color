@@ -27,34 +27,37 @@ namespace BaksDev\Reference\Color\Type;
 
 final class Color
 {
-    
-    public const TYPE = 'color_type';
-
-    private ColorEnum $type;
 	
-    public function __construct(string|ColorEnum $type)
-    {
-        if($type instanceof ColorEnum)
-        {
-            $this->type = $type;
-        }
-        else
-        {
-            $this->type = ColorEnum::from($type);
-        }
-    }
-    
-
-    public function __toString() : string
-    {
-        return $this->type->value;
-    }
+	public const TYPE = 'color_type';
+	
+	private ColorEnum $type;
+	
+	
+	public function __construct(string|ColorEnum $type)
+	{
+		if($type instanceof ColorEnum)
+		{
+			$this->type = $type;
+		}
+		else
+		{
+			$this->type = ColorEnum::from($type);
+		}
+	}
+	
+	
+	public function __toString() : string
+	{
+		return $this->type->value;
+	}
+	
 	
 	/** Возвращает Enum цвета   */
-    public function getType() : ColorEnum
-    {
-        return $this->type;
-    }
+	public function getType() : ColorEnum
+	{
+		return $this->type;
+	}
+	
 	
 	/** Возвращает значение (value) цвета String */
 	public function getValue() : string
@@ -62,23 +65,25 @@ final class Color
 		return $this->type->value;
 	}
 	
+	
 	/** Возвращает ключ (name) Enum цвета */
-    public function getName() : string
-    {
-        return $this->type->name;
-    }
-
+	public function getName() : string
+	{
+		return $this->type->name;
+	}
+	
+	
 	/** Возвращает массив из значнией ColorEnum */
-    public static function cases() : array
-    {
-        $case = null;
-    
-        foreach(ColorEnum::cases() as $color)
-        {
-            $case[] = new self($color);
-        }
-    
-        return $case;
-    }
+	public static function cases() : array
+	{
+		$case = null;
+		
+		foreach(ColorEnum::cases() as $color)
+		{
+			$case[] = new self($color);
+		}
+		
+		return $case;
+	}
 	
 }

@@ -30,26 +30,30 @@ use Doctrine\DBAL\Types\StringType;
 
 final class ColorType extends StringType
 {
-    public const NAME = 'color_type';
-    
-    public function convertToDatabaseValue($value, AbstractPlatform $platform) : mixed
-    {
-        return $value instanceof Color ? $value->getValue() : (new Color($value))->getValue();
-    }
-    
-    public function convertToPHPValue($value, AbstractPlatform $platform) : mixed
-    {
-        return !empty($value) ? new Color($value) : $value;
-    }
-    
-    public function getName() : string
-    {
-        return self::NAME;
-    }
-    
-    public function requiresSQLCommentHint(AbstractPlatform $platform) : bool
-    {
-        return true;
-    }
-    
+	public const NAME = 'color_type';
+	
+	
+	public function convertToDatabaseValue($value, AbstractPlatform $platform) : mixed
+	{
+		return $value instanceof Color ? $value->getValue() : (new Color($value))->getValue();
+	}
+	
+	
+	public function convertToPHPValue($value, AbstractPlatform $platform) : mixed
+	{
+		return !empty($value) ? new Color($value) : $value;
+	}
+	
+	
+	public function getName() : string
+	{
+		return self::NAME;
+	}
+	
+	
+	public function requiresSQLCommentHint(AbstractPlatform $platform) : bool
+	{
+		return true;
+	}
+	
 }

@@ -31,15 +31,17 @@ use Twig\TwigFunction;
 
 final class ColorExtension extends AbstractExtension
 {
-	public function getFunctions(): array
+	public function getFunctions() : array
 	{
 		return [
 			new TwigFunction('color', [$this, 'inputColor'], ['needs_environment' => true, 'is_safe' => ['html']]),
 		];
 	}
 	
-	public function inputColor(Environment $twig, string $color): string
-    {
-        return $twig->render('@DictionaryColor/color.html.twig', ['color' => $color]);
+	
+	public function inputColor(Environment $twig, string $color) : string
+	{
+		return $twig->render('@DictionaryColor/color.html.twig', ['color' => $color]);
 	}
+	
 }
