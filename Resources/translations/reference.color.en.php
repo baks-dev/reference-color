@@ -1,10 +1,8 @@
 <?php
 
 return [
-	'placeholder' =>
-		[
-			'color' => 'Choose a color ...',
-		],
+	'placeholder' =>'Choose a color ...',
+	'label' =>'Color',
 	
 	'000000' => 'Black',
 	'FFFFFF' => 'White',
