@@ -10,6 +10,36 @@
 $ composer require baks-dev/reference-color
 ```
 
+## Натсройки
+
+Для отображения в выпадающих списках, добавить настройку сервиса в конфиг:
+
+config/packages/reference.php
+
+``` php
+<?php
+
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
+
+use BaksDev\Reference\Color\Choice\ReferenceChoiceColor;
+
+return static function (ContainerConfigurator $configurator) {
+	
+	$services = $configurator->services()
+            ->defaults()
+            ->autowire(true)
+            ->autoconfigure(true)
+	;
+
+	$services
+            ->set(ReferenceChoiceColor::class)
+            ->tag('baks.reference.choice')
+	;
+};
+
+```
+
+
 ## Журнал изменений ![Changelog](https://img.shields.io/badge/changelog-yellow)
 
 О том, что изменилось за последнее время, обратитесь к [CHANGELOG](CHANGELOG.md) за дополнительной информацией.
