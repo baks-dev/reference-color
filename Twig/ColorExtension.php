@@ -25,23 +25,47 @@
 
 namespace BaksDev\Reference\Color\Twig;
 
+use BaksDev\Reference\Color\Type\Color;
 use Twig\Environment;
+use Twig\Error\LoaderError;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 final class ColorExtension extends AbstractExtension
 {
+
 	public function getFunctions() : array
 	{
 		return [
-			new TwigFunction('color', [$this, 'inputColor'], ['needs_environment' => true, 'is_safe' => ['html']]),
+			new TwigFunction(Color::TYPE, [$this, 'call'], ['needs_environment' => true, 'is_safe' => ['html']]),
+			new TwigFunction(Color::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
 		];
 	}
 	
-	
-	public function inputColor(Environment $twig, string $color) : string
+	public function call(Environment $twig, string $value) : string
 	{
-		return $twig->render('@DictionaryColor/color.html.twig', ['color' => $color]);
+		try
+		{
+			return $twig->render('@Template/Color/content.html.twig', ['value' => $value]);
+		}
+		catch(LoaderError $loaderError)
+		{
+			return $twig->render('@Color/content.html.twig', ['value' => $value]);
+		}
+	}
+	
+	
+	
+	public function render(Environment $twig, string $value) : string
+	{
+		try
+		{
+			return $twig->render('@Template/Color/template.html.twig', ['value' => $value]);
+		}
+		catch(LoaderError $loaderError)
+		{
+			return $twig->render('@Color/template.html.twig', ['value' => $value]);
+		}
 	}
 	
 }

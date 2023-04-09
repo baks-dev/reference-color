@@ -23,42 +23,25 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Reference\Color\Choice;
+namespace BaksDev\Reference\Color\Form;
 
-use BaksDev\Core\Services\Fields\FieldsChoiceInterface;
-use BaksDev\Core\Services\Reference\ReferenceChoiceInterface;
-use BaksDev\Reference\Color\Form\ColorFieldForm;
 use BaksDev\Reference\Color\Type\Color;
+use Symfony\Component\Form\DataTransformerInterface;
 
-final class ReferenceChoiceColor implements FieldsChoiceInterface, ReferenceChoiceInterface
+final class ColorFieldTransformer implements DataTransformerInterface
 {
-	public function equals($key) : bool
-	{
-		return $key === Color::TYPE;
-	}
 	
-	public function type() : string
+	public function transform(mixed $value)
 	{
-		return Color::TYPE;
-	}
-	
-	
-	public function choice() : array
-	{
-		return Color::cases();
+		if(empty($value)) { return null; }
+		
+		return new Color($value);
 	}
 	
 	
-	public function domain() : string
+	public function reverseTransform(mixed $value) : string
 	{
-		return 'reference.color';
-	}
-	
-	
-	/** Возвращает класс формы для рендера */
-	public function form() : string
-	{
-		return ColorFieldForm::class;
+		return (string) $value;
 	}
 	
 }

@@ -12,10 +12,14 @@ return static function(ContainerConfigurator $configurator, TwigConfig $config) 
 		->autoconfigure() // Automatically registers your services as commands, event subscribers, etc.
 	;
 	
-	$services->set('color.input.twig.extension')
+	/*$services->set(ColorExtension::class)
 		->class(ColorExtension::class)
 		->tag('twig.extension')
-	;
+	;*/
+	
+	$namespace = 'BaksDev\Reference\Color';
+	
+	$services->load($namespace.'\Twig\\', __DIR__.'/../../Twig');
 	
 	$config->path(__DIR__.'/../view', 'Color');
 	

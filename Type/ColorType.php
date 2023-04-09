@@ -35,7 +35,7 @@ final class ColorType extends StringType
 	
 	public function convertToDatabaseValue($value, AbstractPlatform $platform) : mixed
 	{
-		return $value instanceof Color ? $value->getValue() : (new Color($value))->getValue();
+		return $value instanceof Color ? $value->getColorEnumValue() : (new Color($value))->getColorEnumValue();
 	}
 	
 	

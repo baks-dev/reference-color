@@ -33,13 +33,19 @@ final class Color
 	private ColorEnum $type;
 	
 	
-	public function __construct(string|ColorEnum $type)
+	public function __construct(string|ColorEnum|Color $type)
 	{
+		if($type instanceof Color)
+		{
+			$this->type = $type->getColorEnum();
+		}
+		
 		if($type instanceof ColorEnum)
 		{
 			$this->type = $type;
 		}
-		else
+		
+		if(is_string($type))
 		{
 			$this->type = ColorEnum::from($type);
 		}
@@ -53,21 +59,22 @@ final class Color
 	
 	
 	/** Возвращает Enum цвета   */
-	public function getType() : ColorEnum
+	public function getColorEnum() : ColorEnum
 	{
 		return $this->type;
 	}
 	
 	
+	
 	/** Возвращает значение (value) цвета String */
-	public function getValue() : string
+	public function getColorEnumValue() : string
 	{
 		return $this->type->value;
 	}
 	
 	
 	/** Возвращает ключ (name) Enum цвета */
-	public function getName() : string
+	public function getColorEnumName() : string
 	{
 		return $this->type->name;
 	}

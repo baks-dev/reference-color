@@ -23,42 +23,50 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Reference\Color\Choice;
+namespace BaksDev\Reference\Color\Form;
 
-use BaksDev\Core\Services\Fields\FieldsChoiceInterface;
-use BaksDev\Core\Services\Reference\ReferenceChoiceInterface;
-use BaksDev\Reference\Color\Form\ColorFieldForm;
+use BaksDev\Field\Country\Type\Country;
 use BaksDev\Reference\Color\Type\Color;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
-final class ReferenceChoiceColor implements FieldsChoiceInterface, ReferenceChoiceInterface
+final class ColorFieldForm extends AbstractType
 {
-	public function equals($key) : bool
+	private ColorFieldTransformer $transformer;
+	
+	
+	public function __construct(ColorFieldTransformer $transformer)
 	{
-		return $key === Color::TYPE;
+		$this->transformer = $transformer;
 	}
 	
-	public function type() : string
+	public function buildForm(FormBuilderInterface $builder, array $options) : void
 	{
-		return Color::TYPE;
+		$builder->addModelTransformer($this->transformer);
 	}
 	
-	
-	public function choice() : array
+	public function configureOptions(OptionsResolver $resolver) : void
 	{
-		return Color::cases();
+
+		$resolver->setDefaults([
+			'choices' => Color::cases(),
+			'choice_value' => function($color) {
+				return $color?->getColorEnumValue();
+			},
+			'choice_label' => function($color) {
+				return $color->getColorEnumValue();
+			},
+			'translation_domain' => 'reference.color',
+			'placeholder' => 'placeholder',
+			'attr' => ['data-select' => 'select2']
+		]);
 	}
 	
-	
-	public function domain() : string
+	public function getParent()
 	{
-		return 'reference.color';
-	}
-	
-	
-	/** Возвращает класс формы для рендера */
-	public function form() : string
-	{
-		return ColorFieldForm::class;
+		return ChoiceType::class;
 	}
 	
 }
