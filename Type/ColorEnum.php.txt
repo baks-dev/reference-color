@@ -36,6 +36,7 @@ enum ColorEnum : string
 	case ORANGE = 'FFA500'; //Оранжевый Оранжевый	rgb(255,165,0) 	#FFA500
 	case YELLOW = 'FFFF00'; //Жёлтый YELLOW	rgb(255,255,0) 	#FFFF00
 	case GREEN = '008000'; //Зелёный Зелёный	rgb(0,128,0) 	#008000
+
 	case SKY_BLUE_DARK = '00BFFF'; //Небесно-голубой тёмный SKY_BLUE_DARK	rgb(0,191,255) 	#00BFFF
 	case BLUE = '0000FF'; //Синий Синий	rgb(0,0,255) 	#0000FF
 	case VIOLET = '800080'; //Фиолетовый Фиолетовый	rgb(128,0,128) 	#800080
@@ -179,5 +180,9 @@ enum ColorEnum : string
 	case LILAC = 'C8A2C8'; //Сиреневый	rgb(245,245,245) 	#F5F5F5
 	case STEEL = 'B6B6B6'; //Сиреневый	rgb(245,245,245) 	#F5F5F5
 	case BLUE_BLACK = '060607'; //иссиня-черный	rgb(245,245,245) 	#F5F5F5
+
+
+
+
 	
 }

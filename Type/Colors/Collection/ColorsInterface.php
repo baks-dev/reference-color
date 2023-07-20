@@ -21,51 +21,26 @@
  *  THE SOFTWARE.
  */
 
-declare(strict_types=1);
+namespace BaksDev\Reference\Color\Type\Colors\Collection;
 
-namespace BaksDev\Reference\Color\Choice;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
-use BaksDev\Core\Services\Fields\FieldsChoiceInterface;
-use BaksDev\Core\Services\Reference\ReferenceChoiceInterface;
-use BaksDev\Reference\Color\Form\ColorFieldForm;
-use BaksDev\Reference\Color\Type\Color;
-
-final class ReferenceChoiceColor implements FieldsChoiceInterface, ReferenceChoiceInterface
+#[AutoconfigureTag('baks.colors')]
+interface ColorsInterface
 {
+    /**
+     * Возвращает значение (value)
+     */
+    public function getValue(): string;
 
-    public function equals($key): bool
-    {
-        return $key === Color::TYPE;
-    }
+    /**
+     * Сортировка (чем меньше число - тем первым в итерации будет значение)
+     */
+    public static function sort(): int;
 
+    /**
+     * Проверяет, относится ли строка цвета к данному объекту
+     */
+    public static function equals(string $color): bool;
 
-    public function type(): string
-    {
-        return Color::TYPE;
-    }
-
-
-    public function class(): string
-    {
-        return Color::class;
-    }
-
-
-    public function choice(): array
-    {
-        return Color::cases();
-    }
-
-
-    public function domain(): string
-    {
-        return 'reference.color';
-    }
-
-
-    /** Возвращает класс формы для рендера */
-    public function form(): string
-    {
-        return ColorFieldForm::class;
-    }
 }

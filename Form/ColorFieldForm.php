@@ -25,7 +25,6 @@ declare(strict_types=1);
 
 namespace BaksDev\Reference\Color\Form;
 
-use BaksDev\Field\Country\Type\Country;
 use BaksDev\Reference\Color\Type\Color;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -34,39 +33,47 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class ColorFieldForm extends AbstractType
 {
-	private ColorFieldTransformer $transformer;
-	
-	
-	public function __construct(ColorFieldTransformer $transformer)
-	{
-		$this->transformer = $transformer;
-	}
-	
-	public function buildForm(FormBuilderInterface $builder, array $options) : void
-	{
-		$builder->addModelTransformer($this->transformer);
-	}
-	
-	public function configureOptions(OptionsResolver $resolver) : void
-	{
 
-		$resolver->setDefaults([
-			'choices' => Color::cases(),
-			'choice_value' => function($color) {
-				return $color?->getColorEnumValue();
-			},
-			'choice_label' => function($color) {
-				return $color->getColorEnumValue();
-			},
-			'translation_domain' => 'reference.color',
-			'placeholder' => 'placeholder',
-			'attr' => ['data-select' => 'select2']
-		]);
-	}
-	
-	public function getParent()
-	{
-		return ChoiceType::class;
-	}
-	
+    private ColorFieldTransformer $transformer;
+
+
+    public function __construct(
+        ColorFieldTransformer $transformer,
+    )
+    {
+        $this->transformer = $transformer;
+    }
+
+
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder->addModelTransformer($this->transformer);
+    }
+
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+
+        $resolver->setDefaults([
+            'choices'            => Color::cases(),
+            'choice_value'       => function(?Color $color)
+                {
+                    return $color?->getColorValue();
+                },
+            'choice_label'       => function($color)
+                {
+                    return $color->getColorValue();
+                },
+            'translation_domain' => 'reference.color',
+            'placeholder'        => 'placeholder',
+            'attr'               => ['data-select' => 'select2'],
+        ]);
+    }
+
+
+    public function getParent()
+    {
+        return ChoiceType::class;
+    }
+
 }

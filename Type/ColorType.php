@@ -27,33 +27,42 @@ namespace BaksDev\Reference\Color\Type;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
+use InvalidArgumentException;
 
 final class ColorType extends StringType
 {
-	public const NAME = 'color_type';
-	
-	
-	public function convertToDatabaseValue($value, AbstractPlatform $platform) : mixed
-	{
-		return $value instanceof Color ? $value->getColorEnumValue() : (new Color($value))->getColorEnumValue();
-	}
-	
-	
-	public function convertToPHPValue($value, AbstractPlatform $platform) : mixed
-	{
-		return !empty($value) ? new Color($value) : $value;
-	}
-	
-	
-	public function getName() : string
-	{
-		return self::NAME;
-	}
-	
-	
-	public function requiresSQLCommentHint(AbstractPlatform $platform) : bool
-	{
-		return true;
-	}
-	
+
+
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
+    {
+        return $value instanceof Color ? $value->getColorValue() : $value;
+    }
+
+
+    public function convertToPHPValue($value, AbstractPlatform $platform): mixed
+    {
+        /** @var Color $color */
+        foreach(Color::cases() as $color)
+        {
+            if($color->getColorValue() === $value)
+            {
+                return $color;
+            }
+        }
+
+        throw new InvalidArgumentException(sprintf('Not found color %s', $value));
+    }
+
+
+    public function getName(): string
+    {
+        return Color::TYPE;
+    }
+
+
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
+    {
+        return true;
+    }
+
 }

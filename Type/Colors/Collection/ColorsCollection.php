@@ -23,49 +23,35 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Reference\Color\Choice;
+namespace BaksDev\Reference\Color\Type\Colors\Collection;
 
-use BaksDev\Core\Services\Fields\FieldsChoiceInterface;
-use BaksDev\Core\Services\Reference\ReferenceChoiceInterface;
-use BaksDev\Reference\Color\Form\ColorFieldForm;
-use BaksDev\Reference\Color\Type\Color;
+use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 
-final class ReferenceChoiceColor implements FieldsChoiceInterface, ReferenceChoiceInterface
+final class ColorsCollection
 {
 
-    public function equals($key): bool
+    private iterable $colors;
+
+
+    public function __construct(
+        #[TaggedIterator('baks.colors', defaultPriorityMethod: 'sort')] iterable $colors,
+    )
     {
-        return $key === Color::TYPE;
+        $this->colors = $colors;
     }
 
 
-    public function type(): string
+    /** Возвращает массив из значений ColorInterface */
+    public function cases(): array
     {
-        return Color::TYPE;
+        $case = null;
+
+        foreach($this->colors as $color)
+        {
+            $case[] = new $color();
+        }
+
+        return $case;
     }
 
-
-    public function class(): string
-    {
-        return Color::class;
-    }
-
-
-    public function choice(): array
-    {
-        return Color::cases();
-    }
-
-
-    public function domain(): string
-    {
-        return 'reference.color';
-    }
-
-
-    /** Возвращает класс формы для рендера */
-    public function form(): string
-    {
-        return ColorFieldForm::class;
-    }
 }

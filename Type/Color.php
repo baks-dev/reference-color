@@ -25,72 +25,91 @@
 
 namespace BaksDev\Reference\Color\Type;
 
+use BaksDev\Reference\Color\Type\Colors\Collection\ColorsInterface;
+
 final class Color
 {
-	
-	public const TYPE = 'color_type';
-	
-	private ColorEnum $type;
-	
-	
-	public function __construct(string|ColorEnum|Color $type)
-	{
-		if($type instanceof Color)
-		{
-			$this->type = $type->getColorEnum();
-		}
-		
-		if($type instanceof ColorEnum)
-		{
-			$this->type = $type;
-		}
-		
-		if(is_string($type))
-		{
-			$this->type = ColorEnum::from($type);
-		}
-	}
-	
-	
-	public function __toString() : string
-	{
-		return $this->type->value;
-	}
-	
-	
-	/** Возвращает Enum цвета   */
-	public function getColorEnum() : ColorEnum
-	{
-		return $this->type;
-	}
-	
-	
-	
-	/** Возвращает значение (value) цвета String */
-	public function getColorEnumValue() : string
-	{
-		return $this->type->value;
-	}
-	
-	
-	/** Возвращает ключ (name) Enum цвета */
-	public function getColorEnumName() : string
-	{
-		return $this->type->name;
-	}
-	
-	
-	/** Возвращает массив из значнией ColorEnum */
-	public static function cases() : array
-	{
-		$case = null;
-		
-		foreach(ColorEnum::cases() as $color)
-		{
-			$case[] = new self($color);
-		}
-		
-		return $case;
-	}
-	
+
+    public const TYPE = 'color_type';
+
+    private ?ColorsInterface $color = null;
+
+
+    public function __construct(self|string|ColorsInterface $color)
+    {
+
+        if($color instanceof ColorsInterface)
+        {
+            $this->color = $color;
+        }
+
+        if($color instanceof $this)
+        {
+            $this->color = $color->getColor();
+        }
+
+        if(is_string($color))
+        {
+
+
+            /** @var ColorsInterface $class */
+            foreach(self::getDeclaredColors() as $class)
+            {
+                if($class::equals($color))
+                {
+                    $this->color = new $class;
+                    break;
+                }
+            }
+        }
+
+    }
+
+
+    public function __toString(): string
+    {
+        return $this->color ? $this->color->getValue() : '';
+    }
+
+
+    /** Возвращает значение ColorsInterface */
+    public function getColor(): ColorsInterface
+    {
+        return $this->color;
+    }
+
+
+    /** Возвращает значение ColorsInterface */
+    public function getColorValue(): string
+    {
+        return $this->color?->getValue() ?: '';
+    }
+
+
+    public static function cases(): array
+    {
+        $case = [];
+
+        foreach(self::getDeclaredColors() as $color)
+        {
+            /** @var ColorsInterface $color */
+            $colors = new $color;
+            $case[$colors::sort()] = new self($colors);
+        }
+
+        ksort($case);
+
+        return $case;
+    }
+
+
+    public static function getDeclaredColors(): array
+    {
+        return array_filter(
+            get_declared_classes(),
+            static function($className) {
+                return in_array(ColorsInterface::class, class_implements($className), true);
+            },
+        );
+    }
 }

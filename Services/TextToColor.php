@@ -25,6 +25,8 @@
 
 namespace BaksDev\Reference\Color\Services;
 
+use function mb_strtolower;
+
 final class TextToColor
 {
 	private array $data = [
@@ -170,12 +172,20 @@ final class TextToColor
 		'B6B6B6' => 'металл',
 		'060607' => 'иссиня-черный',
 	];
+
+
+
+
 	
 	
 	/** Преобразует текстовое значение цвета в HEX */
 	public function txtToCode(string $txt) : string
 	{
-		$txt = \mb_strtolower($txt);
+        $trans =
+
+
+
+		$txt = mb_strtolower($txt);
 		$data = array_flip($this->data);
 		
 		return $data[$txt];
@@ -185,7 +195,7 @@ final class TextToColor
 	/** Преобразует HEX цвета в текст */
 	public function codeToTxt(string $txt) : string
 	{
-		$txt = \mb_strtolower($txt);
+		$txt = mb_strtolower($txt);
 		$data = $this->data;
 		
 		return $data[$txt];

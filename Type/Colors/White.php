@@ -23,49 +23,38 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Reference\Color\Choice;
+namespace BaksDev\Reference\Color\Type\Colors;
 
-use BaksDev\Core\Services\Fields\FieldsChoiceInterface;
-use BaksDev\Core\Services\Reference\ReferenceChoiceInterface;
-use BaksDev\Reference\Color\Form\ColorFieldForm;
-use BaksDev\Reference\Color\Type\Color;
+use BaksDev\Reference\Color\Type\Colors\Collection\ColorsInterface;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
-final class ReferenceChoiceColor implements FieldsChoiceInterface, ReferenceChoiceInterface
+#[AutoconfigureTag('baks.colors')]
+final class White implements ColorsInterface
 {
+    /**
+     * Белый
+     */
+    public const COLOR = 'FFFFFF';
 
-    public function equals($key): bool
+    /** Возвращает значение (value) */
+    public function getValue(): string
     {
-        return $key === Color::TYPE;
+        return self::COLOR;
     }
 
-
-    public function type(): string
+    /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
+    public static function sort(): int
     {
-        return Color::TYPE;
+        return 1;
+    }
+    /**
+     * Проверяет, относится ли строка цвета к данному объекту
+     */
+    public static function equals(string $color): bool
+    {
+        $haystack = [mb_strtolower(self::COLOR), 'белый', 'white'];
+
+        return in_array(mb_strtolower($color), $haystack);
     }
 
-
-    public function class(): string
-    {
-        return Color::class;
-    }
-
-
-    public function choice(): array
-    {
-        return Color::cases();
-    }
-
-
-    public function domain(): string
-    {
-        return 'reference.color';
-    }
-
-
-    /** Возвращает класс формы для рендера */
-    public function form(): string
-    {
-        return ColorFieldForm::class;
-    }
 }

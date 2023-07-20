@@ -23,49 +23,46 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Reference\Color\Choice;
+namespace BaksDev\Reference\Color\Listeners\Event;
 
-use BaksDev\Core\Services\Fields\FieldsChoiceInterface;
-use BaksDev\Core\Services\Reference\ReferenceChoiceInterface;
-use BaksDev\Reference\Color\Form\ColorFieldForm;
-use BaksDev\Reference\Color\Type\Color;
+use BaksDev\Reference\Color\Type\Colors\Collection\ColorsCollection;
+use BaksDev\Reference\Color\Type\ColorType;
+use Symfony\Component\Console\ConsoleEvents;
+use Symfony\Component\Console\Event\ConsoleCommandEvent;
+use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
+use Symfony\Component\HttpKernel\Event\ControllerEvent;
 
-final class ReferenceChoiceColor implements FieldsChoiceInterface, ReferenceChoiceInterface
+/**
+ * Слушатель инициирует Color для определения в типе доктрины.
+ */
+#[AsEventListener(event: ControllerEvent::class)]
+#[AsEventListener(event: ConsoleEvents::COMMAND)]
+final class ColorListener
 {
 
-    public function equals($key): bool
+    private ColorsCollection $collection;
+
+
+    public function __construct(ColorsCollection $collection)
     {
-        return $key === Color::TYPE;
+        $this->collection = $collection;
     }
 
 
-    public function type(): string
+    public function onKernelController(ControllerEvent $event): void
     {
-        return Color::TYPE;
+        // Инициируем цвета
+        if(in_array(ColorType::class, get_declared_classes(), true))
+        {
+            $this->collection->cases();
+        }
     }
 
 
-    public function class(): string
+    public function onConsoleCommand(ConsoleCommandEvent $event): void
     {
-        return Color::class;
+        // Всегда инициируем цвет в консольной комманде
+        $this->collection->cases();
     }
 
-
-    public function choice(): array
-    {
-        return Color::cases();
-    }
-
-
-    public function domain(): string
-    {
-        return 'reference.color';
-    }
-
-
-    /** Возвращает класс формы для рендера */
-    public function form(): string
-    {
-        return ColorFieldForm::class;
-    }
 }
