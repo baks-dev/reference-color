@@ -10,13 +10,17 @@ return static function(ContainerConfigurator $configurator)
             ->autowire(true)
             ->autoconfigure(true);
 
-        $namespace = 'BaksDev\Reference\Color';
+        $NAMESPACE = 'BaksDev\Reference\Color\\';
 
-        $services->load($namespace.'\Form\\', __DIR__.'/../../Form');
+        $MODULE = substr(__DIR__, 0, strpos(__DIR__, "Resources"));
 
-        $services->load($namespace.'\Type\Colors\\', __DIR__.'/../../Type/Colors');
+        $services->load($NAMESPACE.'Form\\', $MODULE.'Form');
 
-        $services->load($namespace.'\Listeners\\', __DIR__.'/../../Listeners');
+        $services->load($NAMESPACE.'Type\Colors\\', $MODULE.'Type/Colors');
+
+        $services->load($NAMESPACE.'Listeners\\', $MODULE.'Listeners');
+
+        $services->load($NAMESPACE.'Twig\\', $MODULE.'Twig');
 
     };
 
