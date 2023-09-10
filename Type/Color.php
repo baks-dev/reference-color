@@ -90,11 +90,11 @@ final class Color
     {
         $case = [];
 
-        foreach(self::getDeclaredColors() as $color)
+        foreach(self::getDeclaredColors() as $key => $color)
         {
             /** @var ColorsInterface $color */
             $colors = new $color;
-            $case[$colors::sort()] = new self($colors);
+            $case[$colors::sort().$key] = new self($colors);
         }
 
         ksort($case);

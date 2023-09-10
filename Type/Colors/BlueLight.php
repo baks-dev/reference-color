@@ -28,12 +28,12 @@ use BaksDev\Reference\Color\Type\Colors\Collection\ColorsInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 #[AutoconfigureTag('baks.colors')]
-final class SkyBlue implements ColorsInterface
+final class BlueLight implements ColorsInterface
 {
     /**
-     * Голубой
+     * Светло-синий BlueLight
      */
-    public const COLOR = '00BFFF';
+    public const COLOR = '41637e';
 
     /** Возвращает значение (value) */
     public function getValue(): string
@@ -44,7 +44,7 @@ final class SkyBlue implements ColorsInterface
     /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
     public static function sort(): int
     {
-        return 8;
+        return 15;
     }
 
     /**
@@ -52,8 +52,9 @@ final class SkyBlue implements ColorsInterface
      */
     public static function equals(string $color): bool
     {
-        $haystack = [mb_strtolower(self::COLOR), 'skyblue', 'голубой'];
+        $haystack = [mb_strtolower(self::COLOR), 'светло-синий', 'light-blue', 'blue-light'];
 
         return in_array(mb_strtolower($color), $haystack);
     }
+
 }

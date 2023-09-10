@@ -1,2 +1,6 @@
 {% trans_default_domain 'reference.color' %}
-{{ value|trans }}
+{% if value %}
+    {{ value|trans }}
+{% else %}
+    Неивестен
+{% endif %}
