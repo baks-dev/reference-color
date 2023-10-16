@@ -29,9 +29,7 @@ use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 
 final class ColorsCollection
 {
-
     private iterable $colors;
-
 
     public function __construct(
         #[TaggedIterator('baks.colors', defaultPriorityMethod: 'sort')] iterable $colors,
@@ -44,12 +42,14 @@ final class ColorsCollection
     /** Возвращает массив из значений ColorInterface */
     public function cases(): array
     {
-        $case = null;
-
-        foreach($this->colors as $color)
+        foreach($this->colors as $key => $color)
         {
-            $case[] = new $color();
+            /** @var ColorsInterface $color */
+            $color = new $color();
+            $case[$key.$color::sort()] = $color;
         }
+
+        ksort($case);
 
         return $case;
     }

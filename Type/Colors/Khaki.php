@@ -28,12 +28,12 @@ use BaksDev\Reference\Color\Type\Colors\Collection\ColorsInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 #[AutoconfigureTag('baks.colors')]
-final class BlueNavy implements ColorsInterface
+final class Khaki implements ColorsInterface
 {
     /**
-     * Темно-синий BlueNavy
+     * Розовый
      */
-    public const COLOR = '00008B';
+    public const COLOR = '947862';
 
     /** Возвращает значение (value) */
     public function getValue(): string
@@ -44,7 +44,7 @@ final class BlueNavy implements ColorsInterface
     /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
     public static function sort(): int
     {
-        return 15;
+        return 11;
     }
 
     /**
@@ -52,7 +52,7 @@ final class BlueNavy implements ColorsInterface
      */
     public static function equals(string $color): bool
     {
-        $haystack = [mb_strtolower(self::COLOR), 'темно-синий', 'navy-blue', 'blue-navy'];
+        $haystack = [mb_strtolower(self::COLOR), 'хаки', 'khaki'];
 
         return in_array(mb_strtolower($color), $haystack);
     }

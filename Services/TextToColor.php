@@ -179,12 +179,8 @@ final class TextToColor
 	
 	
 	/** Преобразует текстовое значение цвета в HEX */
-	public function txtToCode(string $txt) : string
+	public function txtToCode(string $txt): string
 	{
-        $trans =
-
-
-
 		$txt = mb_strtolower($txt);
 		$data = array_flip($this->data);
 		
@@ -193,7 +189,7 @@ final class TextToColor
 	
 	
 	/** Преобразует HEX цвета в текст */
-	public function codeToTxt(string $txt) : string
+	public function codeToTxt(string $txt): string
 	{
 		$txt = mb_strtolower($txt);
 		$data = $this->data;

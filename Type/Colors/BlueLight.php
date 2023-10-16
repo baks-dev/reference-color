@@ -33,7 +33,7 @@ final class BlueLight implements ColorsInterface
     /**
      * Светло-синий BlueLight
      */
-    public const COLOR = '41637e';
+    public const COLOR = 'ADD8E6';
 
     /** Возвращает значение (value) */
     public function getValue(): string

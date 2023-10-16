@@ -44,7 +44,7 @@ final class Blue implements ColorsInterface
     /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
     public static function sort(): int
     {
-        return 9;
+        return 15;
     }
 
     /**
