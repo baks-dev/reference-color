@@ -50,7 +50,7 @@ final class ColorExtension extends AbstractExtension
 		}
 		catch(LoaderError $loaderError)
 		{
-			return $twig->render('@Color/content.html.twig', ['value' => $value]);
+			return $twig->render('@reference-color/content.html.twig', ['value' => $value]);
 		}
 	}
 	
@@ -64,7 +64,7 @@ final class ColorExtension extends AbstractExtension
 		}
 		catch(LoaderError $loaderError)
 		{
-			return $twig->render('@Color/template.html.twig', ['value' => $value]);
+			return $twig->render('@reference-color/template.html.twig', ['value' => $value]);
 		}
 	}
 	

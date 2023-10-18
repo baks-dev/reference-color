@@ -32,25 +32,14 @@ use InvalidArgumentException;
 final class ColorType extends StringType
 {
 
-
     public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
     {
-        return $value instanceof Color ? $value->getColorValue() : $value;
+        return (string) $value;
     }
-
 
     public function convertToPHPValue($value, AbstractPlatform $platform): mixed
     {
-        /** @var Color $color */
-        foreach(Color::cases() as $color)
-        {
-            if($color->getColorValue() === $value)
-            {
-                return $color;
-            }
-        }
-
-        throw new InvalidArgumentException(sprintf('Not found color %s', $value));
+        return new Color($value);
     }
 
 
@@ -64,5 +53,4 @@ final class ColorType extends StringType
     {
         return true;
     }
-
 }

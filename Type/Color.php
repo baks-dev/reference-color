@@ -26,49 +26,61 @@
 namespace BaksDev\Reference\Color\Type;
 
 use BaksDev\Reference\Color\Type\Colors\Collection\ColorsInterface;
+use BaksDev\Reference\Currency\Type\Currencies\Collection\CurrencyInterface;
+use InvalidArgumentException;
 
 final class Color
 {
 
     public const TYPE = 'color_type';
 
-    private ?ColorsInterface $color = null;
+    private ColorsInterface $color;
 
 
-    public function __construct(self|string|ColorsInterface $color)
+    public function __construct(ColorsInterface|self|string $color)
     {
+
+        if(is_string($color) && class_exists($color))
+        {
+            $instance = new $color();
+
+            if($instance instanceof ColorsInterface)
+            {
+                $this->color = $instance;
+                return;
+            }
+        }
 
         if($color instanceof ColorsInterface)
         {
             $this->color = $color;
+            return;
         }
 
-        if($color instanceof $this)
+        if($color instanceof self)
         {
             $this->color = $color->getColor();
+            return;
         }
 
-        if(is_string($color))
+        /** @var ColorsInterface $declare */
+        foreach(self::getDeclared() as $declare)
         {
-
-
-            /** @var ColorsInterface $class */
-            foreach(self::getDeclaredColors() as $class)
+            if($declare::equals($color))
             {
-                if($class::equals($color))
-                {
-                    $this->color = new $class;
-                    break;
-                }
+                $this->color = new $declare;
+                return;
             }
         }
+
+        throw new InvalidArgumentException(sprintf('Not found Color %s', $color));
 
     }
 
 
     public function __toString(): string
     {
-        return $this->color ? $this->color->getValue() : '';
+        return $this->color->getValue();
     }
 
 
@@ -82,7 +94,7 @@ final class Color
     /** Возвращает значение ColorsInterface */
     public function getColorValue(): string
     {
-        return $this->color?->getValue() ?: '';
+        return $this->color->getValue();
     }
 
 
@@ -90,26 +102,32 @@ final class Color
     {
         $case = [];
 
-        foreach(self::getDeclaredColors() as $key => $color)
+        foreach(self::getDeclared() as $measurement)
         {
-            /** @var ColorsInterface $color */
-            $colors = new $color;
-            $case[$colors::sort().$key] = new self($colors);
+            /** @var CurrencyInterface $measurement */
+            $class = new $measurement;
+            $case[$class::sort()] = new self($class);
         }
-
-        ksort($case);
 
         return $case;
     }
 
 
-    public static function getDeclaredColors(): array
+    public static function getDeclared(): array
     {
         return array_filter(
             get_declared_classes(),
             static function($className) {
                 return in_array(ColorsInterface::class, class_implements($className), true);
-            },
+            }
         );
     }
+
+    public function equals(mixed $status): bool
+    {
+        $status = new self($status);
+
+        return $this->getColorValue() === $status->getColorValue();
+    }
+
 }

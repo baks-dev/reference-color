@@ -1,7 +1,7 @@
 {
   "namespaces": [
     {
-      "namespace": "Color",
+      "namespace": "reference-color",
       "path": "Resources/view"
     }
   ]
