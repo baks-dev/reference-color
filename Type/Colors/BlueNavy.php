@@ -52,7 +52,7 @@ final class BlueNavy implements ColorsInterface
      */
     public static function equals(string $color): bool
     {
-        $haystack = [mb_strtolower(self::COLOR), 'темно-синий', 'navy-blue', 'blue-navy'];
+        $haystack = [mb_strtolower(self::COLOR), 'темно-синий', 'navy-blue', 'blue-navy', 'иссиня-черный'];
 
         return in_array(mb_strtolower($color), $haystack);
     }
