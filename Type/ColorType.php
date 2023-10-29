@@ -39,15 +39,13 @@ final class ColorType extends StringType
 
     public function convertToPHPValue($value, AbstractPlatform $platform): mixed
     {
-        return new Color($value);
+        return !empty($value) ? new Color($value) : null;
     }
-
 
     public function getName(): string
     {
         return Color::TYPE;
     }
-
 
     public function requiresSQLCommentHint(AbstractPlatform $platform): bool
     {
