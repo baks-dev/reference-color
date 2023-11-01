@@ -102,12 +102,14 @@ final class Color
     {
         $case = [];
 
-        foreach(self::getDeclared() as $measurement)
+        foreach(self::getDeclared() as $key => $declare)
         {
-            /** @var CurrencyInterface $measurement */
-            $class = new $measurement;
-            $case[$class::sort()] = new self($class);
+            /** @var ColorsInterface $declare */
+            $class = new $declare;
+            $case[$class::sort().$key] = new self($class);
         }
+
+        ksort($case);
 
         return $case;
     }

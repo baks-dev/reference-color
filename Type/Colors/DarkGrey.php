@@ -56,7 +56,7 @@ final class DarkGrey implements ColorsInterface
      */
     public static function equals(string $color): bool
     {
-        $haystack = [mb_strtolower(self::COLOR), 'темно-серый', 'dark-grey'];
+        $haystack = [mb_strtolower(self::COLOR), 'темно-серый', 'тёмно-серый', 'dark-grey'];
 
        return in_array(mb_strtolower($color), $haystack);
     }
