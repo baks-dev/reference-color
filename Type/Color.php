@@ -34,7 +34,7 @@ final class Color
 
     public const TYPE = 'color_type';
 
-    private ColorsInterface $color;
+    private ?ColorsInterface $color = null;
 
 
     public function __construct(ColorsInterface|self|string $color)
@@ -73,7 +73,7 @@ final class Color
             }
         }
 
-        throw new InvalidArgumentException(sprintf('Not found Color %s', $color));
+        //throw new InvalidArgumentException(sprintf('Not found Color %s', $color));
 
     }
 
@@ -85,16 +85,16 @@ final class Color
 
 
     /** Возвращает значение ColorsInterface */
-    public function getColor(): ColorsInterface
+    public function getColor(): ?ColorsInterface
     {
         return $this->color;
     }
 
 
     /** Возвращает значение ColorsInterface */
-    public function getColorValue(): string
+    public function getColorValue(): ?string
     {
-        return $this->color->getValue();
+        return $this->color?->getValue();
     }
 
 
