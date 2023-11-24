@@ -25,8 +25,6 @@
 
 namespace BaksDev\Reference\Color\Services;
 
-use function mb_strtolower;
-
 final class TextToColor
 {
 	private array $data = [
