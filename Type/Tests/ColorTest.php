@@ -43,9 +43,12 @@ final class ColorTest extends KernelTestCase
     {
         /** @var ColorsCollection $ColorsCollection */
         $ColorsCollection = self::getContainer()->get(ColorsCollection::class);
+        $cases = $ColorsCollection->cases();
+
+        self::assertCount(24, $cases);
 
         /** @var WildberriesStatusInterface $case */
-        foreach($ColorsCollection->cases() as $case)
+        foreach($cases as $case)
         {
             $Color = new Color($case->getValue());
 
@@ -63,8 +66,6 @@ final class ColorTest extends KernelTestCase
             $convertToPHP = $ColorType->convertToPHPValue($convertToDatabase, $platform);
             self::assertInstanceOf(Color::class, $convertToPHP);
             self::assertEquals($case, $convertToPHP->getColor());
-
         }
-
     }
 }

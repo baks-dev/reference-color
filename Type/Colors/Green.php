@@ -52,7 +52,7 @@ final class Green implements ColorsInterface
      */
     public static function equals(string $color): bool
     {
-        $haystack = [mb_strtolower(self::COLOR), 'зеленый', 'green'];
+        $haystack = [mb_strtolower(self::COLOR), 'зеленый', 'зелёный', 'green'];
 
         return in_array(mb_strtolower($color), $haystack);
     }
