@@ -31,8 +31,8 @@ use Symfony\Component\Form\DataTransformerInterface;
 final class ColorFieldTransformer implements DataTransformerInterface
 {
 	
-	public function transform(mixed $value)
-	{
+	public function transform(mixed $value): ?Color
+    {
 		if(empty($value)) { return null; }
 		
 		return new Color($value);
