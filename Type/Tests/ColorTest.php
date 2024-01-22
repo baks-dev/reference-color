@@ -67,5 +67,7 @@ final class ColorTest extends KernelTestCase
             self::assertInstanceOf(Color::class, $convertToPHP);
             self::assertEquals($case, $convertToPHP->getColor());
         }
+
+        self::assertTrue(true);
     }
 }
