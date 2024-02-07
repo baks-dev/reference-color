@@ -25,19 +25,21 @@
 
 namespace BaksDev\Reference\Color\Type;
 
+
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
+use Doctrine\DBAL\Types\Type;
 use InvalidArgumentException;
 
-final class ColorType extends StringType
+final class ColorType extends Type
 {
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
     {
         return (string) $value;
     }
 
-    public function convertToPHPValue($value, AbstractPlatform $platform): mixed
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?Color
     {
         return !empty($value) ? new Color($value) : null;
     }
@@ -50,5 +52,12 @@ final class ColorType extends StringType
     public function requiresSQLCommentHint(AbstractPlatform $platform): bool
     {
         return true;
+    }
+
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
+    {
+        $column['length'] = 10;
+
+        return $platform->getStringTypeDeclarationSQL($column);
     }
 }
