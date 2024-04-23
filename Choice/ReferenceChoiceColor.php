@@ -68,4 +68,9 @@ final class ReferenceChoiceColor implements FieldsChoiceInterface, ReferenceChoi
     {
         return ColorFieldForm::class;
     }
+
+    public function constraints(): ?array
+    {
+        return null;
+    }
 }

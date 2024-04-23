@@ -1,6 +1,6 @@
 # BaksDev Color
 
-[![Version](https://img.shields.io/badge/version-7.0.5-blue)](https://github.com/baks-dev/reference-color/releases)
+[![Version](https://img.shields.io/badge/version-7.0.6-blue)](https://github.com/baks-dev/reference-color/releases)
 ![php 8.2+](https://img.shields.io/badge/php-min%208.1-red.svg)
 
 Библиотека цветов "Color"
