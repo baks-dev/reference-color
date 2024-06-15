@@ -20,7 +20,7 @@
   ],
   "require": {
     "php": ">=8.3",
-    "ext-mbstring": "*"
+    "baks-dev/core": "^7.1"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest"
