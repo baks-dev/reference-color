@@ -39,7 +39,6 @@ use Symfony\Component\HttpKernel\Event\ControllerEvent;
 #[AsEventListener(event: ConsoleEvents::COMMAND)]
 final class ColorListener
 {
-
     private ColorsCollection $collection;
 
 

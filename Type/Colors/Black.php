@@ -31,7 +31,6 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 #[AutoconfigureTag('baks.colors')]
 final class Black implements ColorsInterface
 {
-
     /**
      * Черный
      */

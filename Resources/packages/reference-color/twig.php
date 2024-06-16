@@ -26,7 +26,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use BaksDev\Reference\Color\BaksDevReferenceColorBundle;
 use Symfony\Config\TwigConfig;
 
-return static function(TwigConfig $twig) {
+return static function (TwigConfig $twig) {
 
     $twig->path(
         BaksDevReferenceColorBundle::PATH.'Resources/view',
@@ -34,7 +34,3 @@ return static function(TwigConfig $twig) {
     );
 
 };
-
-
-
-

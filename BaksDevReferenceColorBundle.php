@@ -12,14 +12,13 @@ declare(strict_types=1);
 
 namespace BaksDev\Reference\Color;
 
-use DirectoryIterator;
+use BaksDev\Reference\Color\Choice\ReferenceChoiceColor;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
 class BaksDevReferenceColorBundle extends AbstractBundle
 {
-
     public const NAMESPACE = __NAMESPACE__.'\\';
 
     public const PATH = __DIR__.DIRECTORY_SEPARATOR;
@@ -57,6 +56,11 @@ class BaksDevReferenceColorBundle extends AbstractBundle
             self::NAMESPACE.'Twig\\',
             self::PATH.'Twig'
         );
+
+        $services->set(ReferenceChoiceColor::class)
+            ->tag('baks.reference.choice')
+            ->tag('baks.fields.choice');
+
     }
-	
+
 }

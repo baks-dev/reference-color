@@ -6,6 +6,6 @@ use BaksDev\Reference\Color\Type\Color;
 use BaksDev\Reference\Color\Type\ColorType;
 use Symfony\Config\DoctrineConfig;
 
-return static function(DoctrineConfig $doctrine) {
-	$doctrine->dbal()->type(Color::TYPE)->class(ColorType::class);
+return static function (DoctrineConfig $doctrine) {
+    $doctrine->dbal()->type(Color::TYPE)->class(ColorType::class);
 };

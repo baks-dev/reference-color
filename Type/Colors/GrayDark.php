@@ -24,6 +24,7 @@
 declare(strict_types=1);
 
 namespace BaksDev\Reference\Color\Type\Colors;
+
 use BaksDev\Reference\Color\Type\Colors\Collection\ColorsInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
@@ -58,6 +59,6 @@ final class GrayDark implements ColorsInterface
     {
         $haystack = [mb_strtolower(self::COLOR), 'темно-серый', 'тёмно-серый', 'dark-grey'];
 
-       return in_array(mb_strtolower($color), $haystack);
+        return in_array(mb_strtolower($color), $haystack);
     }
 }

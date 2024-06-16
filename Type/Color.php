@@ -31,7 +31,6 @@ use InvalidArgumentException;
 
 final class Color
 {
-
     public const TYPE = 'color_type';
 
     private ?ColorsInterface $color = null;
@@ -68,7 +67,7 @@ final class Color
         {
             if($declare::equals($color))
             {
-                $this->color = new $declare;
+                $this->color = new $declare();
                 return;
             }
         }
@@ -105,7 +104,7 @@ final class Color
         foreach(self::getDeclared() as $key => $declare)
         {
             /** @var ColorsInterface $declare */
-            $class = new $declare;
+            $class = new $declare();
             $case[$class::sort().$key] = new self($class);
         }
 
@@ -119,7 +118,7 @@ final class Color
     {
         return array_filter(
             get_declared_classes(),
-            static function($className) {
+            static function ($className) {
                 return in_array(ColorsInterface::class, class_implements($className), true);
             }
         );

@@ -30,18 +30,20 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 final class ColorFieldTransformer implements DataTransformerInterface
 {
-	
-	public function transform(mixed $value): ?Color
+    public function transform(mixed $value): ?Color
     {
-		if(empty($value)) { return null; }
-		
-		return new Color($value);
-	}
-	
-	
-	public function reverseTransform(mixed $value): string
-	{
-		return (string) $value;
-	}
-	
+        if(empty($value))
+        {
+            return null;
+        }
+
+        return new Color($value);
+    }
+
+
+    public function reverseTransform(mixed $value): string
+    {
+        return (string) $value;
+    }
+
 }

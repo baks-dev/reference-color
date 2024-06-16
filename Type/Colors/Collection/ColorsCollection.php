@@ -33,8 +33,7 @@ final class ColorsCollection
 
     public function __construct(
         #[TaggedIterator('baks.colors', defaultPriorityMethod: 'sort')] iterable $colors,
-    )
-    {
+    ) {
         $this->colors = $colors;
     }
 

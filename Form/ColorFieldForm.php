@@ -33,14 +33,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class ColorFieldForm extends AbstractType
 {
-
     private ColorFieldTransformer $transformer;
 
 
     public function __construct(
         ColorFieldTransformer $transformer,
-    )
-    {
+    ) {
         $this->transformer = $transformer;
     }
 
@@ -55,18 +53,16 @@ final class ColorFieldForm extends AbstractType
     {
 
         $resolver->setDefaults([
-            'choices'            => Color::cases(),
-            'choice_value'       => function(?Color $color)
-                {
-                    return $color?->getColorValue();
-                },
-            'choice_label'       => function($color)
-                {
-                    return $color->getColorValue();
-                },
+            'choices' => Color::cases(),
+            'choice_value' => function (?Color $color) {
+                return $color?->getColorValue();
+            },
+            'choice_label' => function ($color) {
+                return $color->getColorValue();
+            },
             'translation_domain' => 'reference.color',
-            'placeholder'        => 'placeholder',
-            'attr'               => ['data-select' => 'select2'],
+            'placeholder' => 'placeholder',
+            'attr' => ['data-select' => 'select2'],
         ]);
     }
 

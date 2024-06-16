@@ -24,6 +24,7 @@
 declare(strict_types=1);
 
 namespace BaksDev\Reference\Color\Type\Colors;
+
 use BaksDev\Reference\Color\Type\Colors\Collection\ColorsInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
@@ -58,6 +59,6 @@ final class RedCrimson implements ColorsInterface
     {
         $haystack = [mb_strtolower(self::COLOR), 'малиновый', 'crimson'];
 
-       return in_array(mb_strtolower($color), $haystack);
+        return in_array(mb_strtolower($color), $haystack);
     }
 }

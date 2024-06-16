@@ -21,4 +21,4 @@
  *  THE SOFTWARE.
  */
 
-return [ 'color_type' => 'Color' ];
+return ['color_type' => 'Color'];

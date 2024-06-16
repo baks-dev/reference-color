@@ -47,6 +47,7 @@ final class White implements ColorsInterface
     {
         return 1;
     }
+
     /**
      * Проверяет, относится ли строка цвета к данному объекту
      */

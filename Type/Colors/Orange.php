@@ -24,6 +24,7 @@
 declare(strict_types=1);
 
 namespace BaksDev\Reference\Color\Type\Colors;
+
 use BaksDev\Reference\Color\Type\Colors\Collection\ColorsInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 

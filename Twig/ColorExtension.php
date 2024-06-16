@@ -33,39 +33,37 @@ use Twig\TwigFunction;
 
 final class ColorExtension extends AbstractExtension
 {
+    public function getFunctions(): array
+    {
+        return [
+            new TwigFunction(Color::TYPE, [$this, 'call'], ['needs_environment' => true, 'is_safe' => ['html']]),
+            new TwigFunction(Color::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
+        ];
+    }
 
-	public function getFunctions() : array
-	{
-		return [
-			new TwigFunction(Color::TYPE, [$this, 'call'], ['needs_environment' => true, 'is_safe' => ['html']]),
-			new TwigFunction(Color::TYPE.'_render', [$this, 'render'], ['needs_environment' => true, 'is_safe' => ['html']]),
-		];
-	}
-	
-	public function call(Environment $twig, ?string $value): string
-	{
-		try
-		{
-			return $twig->render('@Template/Color/content.html.twig', ['value' => $value]);
-		}
-		catch(LoaderError $loaderError)
-		{
-			return $twig->render('@reference-color/content.html.twig', ['value' => $value]);
-		}
-	}
-	
-	
-	
-	public function render(Environment $twig, ?string $value): string
-	{
-		try
-		{
-			return $twig->render('@Template/Color/template.html.twig', ['value' => $value]);
-		}
-		catch(LoaderError $loaderError)
-		{
-			return $twig->render('@reference-color/template.html.twig', ['value' => $value]);
-		}
-	}
-	
+    public function call(Environment $twig, ?string $value): string
+    {
+        try
+        {
+            return $twig->render('@Template/Color/content.html.twig', ['value' => $value]);
+        }
+        catch(LoaderError $loaderError)
+        {
+            return $twig->render('@reference-color/content.html.twig', ['value' => $value]);
+        }
+    }
+
+
+    public function render(Environment $twig, ?string $value): string
+    {
+        try
+        {
+            return $twig->render('@Template/Color/template.html.twig', ['value' => $value]);
+        }
+        catch(LoaderError $loaderError)
+        {
+            return $twig->render('@reference-color/template.html.twig', ['value' => $value]);
+        }
+    }
+
 }
