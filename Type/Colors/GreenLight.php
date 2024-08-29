@@ -45,7 +45,7 @@ final class GreenLight implements ColorsInterface
     /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
     public static function sort(): int
     {
-        return 7;
+        return 51;
     }
 
     /**

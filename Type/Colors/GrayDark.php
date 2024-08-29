@@ -49,7 +49,7 @@ final class GrayDark implements ColorsInterface
      */
     public static function sort(): int
     {
-        return 3;
+        return 32;
     }
 
     /**

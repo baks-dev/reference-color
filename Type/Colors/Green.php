@@ -45,7 +45,7 @@ final class Green implements ColorsInterface
     /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
     public static function sort(): int
     {
-        return 7;
+        return 59;
     }
 
     /**
@@ -53,9 +53,17 @@ final class Green implements ColorsInterface
      */
     public static function equals(string $color): bool
     {
-        $haystack = [mb_strtolower(self::COLOR), 'зеленый', 'зелёный', 'green'];
 
-        return in_array(mb_strtolower($color), $haystack);
+        $color = mb_strtolower($color);
+
+        if($color === mb_strtolower(self::COLOR))
+        {
+            return true;
+        }
+
+        return stripos($color, 'зеленый') !== false
+            || stripos($color, 'зелёный') !== false
+            || stripos($color, 'green') !== false;
     }
 
 }

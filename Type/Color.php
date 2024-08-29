@@ -26,6 +26,7 @@
 namespace BaksDev\Reference\Color\Type;
 
 use BaksDev\Reference\Color\Type\Colors\Collection\ColorsInterface;
+use BaksDev\Reference\Color\Type\Colors\White;
 use BaksDev\Reference\Currency\Type\Currencies\Collection\CurrencyInterface;
 use InvalidArgumentException;
 
@@ -72,28 +73,28 @@ final class Color
             }
         }
 
-        //throw new InvalidArgumentException(sprintf('Not found Color %s', $color));
-
+        /** По умолчанию - белый цвет */
+        $this->color = new White();
     }
 
 
     public function __toString(): string
     {
-        return $this->color->getValue();
+        return $this->color ? $this->color->getValue() : 'FFFFFF';
     }
 
 
     /** Возвращает значение ColorsInterface */
     public function getColor(): ?ColorsInterface
     {
-        return $this->color;
+        return $this->color ?: new White();
     }
 
 
     /** Возвращает значение ColorsInterface */
     public function getColorValue(): ?string
     {
-        return $this->color?->getValue();
+        return $this->color ? $this->color->getValue() : 'FFFFFF';
     }
 
 

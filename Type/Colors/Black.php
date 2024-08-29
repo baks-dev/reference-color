@@ -60,8 +60,13 @@ final class Black implements ColorsInterface
      */
     public static function equals(string $color): bool
     {
-        $haystack = [mb_strtolower(self::COLOR), 'черный', 'black'];
+        $color = mb_strtolower($color);
 
-        return in_array(mb_strtolower($color), $haystack);
+        if($color === mb_strtolower(self::COLOR))
+        {
+            return true;
+        }
+
+        return stripos($color, 'черный') !== false || stripos($color, 'black') !== false;
     }
 }

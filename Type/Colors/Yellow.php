@@ -53,9 +53,16 @@ final class Yellow implements ColorsInterface
      */
     public static function equals(string $color): bool
     {
-        $haystack = [mb_strtolower(self::COLOR), 'желтый', 'жёлтый', 'yellow'];
+        $color = mb_strtolower($color);
 
-        return in_array(mb_strtolower($color), $haystack);
+        if($color === mb_strtolower(self::COLOR))
+        {
+            return true;
+        }
+
+        return stripos($color, 'желтый') !== false
+            || stripos($color, 'жёлтый') !== false
+            || stripos($color, 'yellow') !== false;
     }
 
 }

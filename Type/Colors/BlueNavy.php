@@ -45,7 +45,7 @@ final class BlueNavy implements ColorsInterface
     /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
     public static function sort(): int
     {
-        return 15;
+        return 42;
     }
 
     /**
