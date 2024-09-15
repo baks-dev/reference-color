@@ -24,24 +24,13 @@
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use BaksDev\Reference\Color\BaksDevReferenceColorBundle;
+use Symfony\Config\TwigConfig;
 
-return static function(ContainerConfigurator $configurator) {
+return static function (TwigConfig $twig) {
 
-    $services = $configurator->services()
-        ->defaults()
-        ->autowire(true)
-        ->autoconfigure(true);
-
-    $NAMESPACE = BaksDevReferenceColorBundle::NAMESPACE;
-    $PATH = BaksDevReferenceColorBundle::PATH;
-
-    $services->load($NAMESPACE.'Form\\', $PATH.'Form');
-
-    $services->load($NAMESPACE.'Type\Colors\\', $PATH.'Type/Colors');
-
-    $services->load($NAMESPACE.'Listeners\\', $PATH.'Listeners');
-
-    $services->load($NAMESPACE.'Twig\\', $PATH.'Twig');
+    $twig->path(
+        BaksDevReferenceColorBundle::PATH.implode(DIRECTORY_SEPARATOR, ['Resources', 'view', '']), // .'Resources/view',
+        'reference-color'
+    );
 
 };
-

@@ -24,10 +24,37 @@
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use BaksDev\Reference\Color\BaksDevReferenceColorBundle;
-use Symfony\Config\FrameworkConfig;
+use BaksDev\Reference\Color\Choice\ReferenceChoiceColor;
 
-return static function (FrameworkConfig $config) {
-    $config
-        ->translator()
-        ->paths([BaksDevReferenceColorBundle::PATH.'Resources/translations/']);
+return static function (ContainerConfigurator $configurator) {
+
+    $services = $configurator->services()
+        ->defaults()
+        ->autowire(true)
+        ->autoconfigure(true);
+
+    $NAMESPACE = BaksDevReferenceColorBundle::NAMESPACE;
+    $PATH = BaksDevReferenceColorBundle::PATH;
+
+    $services->load($NAMESPACE, $PATH)
+        ->exclude([
+            $PATH.'{Entity,Resources,Type}',
+            $PATH.'**'.DIRECTORY_SEPARATOR.'*Message.php',
+            $PATH.'**'.DIRECTORY_SEPARATOR.'*DTO.php',
+            $PATH.'**'.DIRECTORY_SEPARATOR.'*Test.php',
+        ]);
+
+    //$services->load($NAMESPACE.'Form\\', $PATH.'Form');
+
+    //$services->load($NAMESPACE.'Listeners\\', $PATH.'Listeners');
+
+    //$services->load($NAMESPACE.'Twig\\', $PATH.'Twig');
+
+    $services->load($NAMESPACE.'Type\Colors\\', $PATH.implode(DIRECTORY_SEPARATOR, ['Type', 'Colors']));
+
+    $services->set(ReferenceChoiceColor::class)
+        ->tag('baks.reference.choice')
+        ->tag('baks.fields.choice');
+
+
 };

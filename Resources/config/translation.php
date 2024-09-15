@@ -24,13 +24,10 @@
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use BaksDev\Reference\Color\BaksDevReferenceColorBundle;
-use Symfony\Config\TwigConfig;
+use Symfony\Config\FrameworkConfig;
 
-return static function (TwigConfig $twig) {
-
-    $twig->path(
-        BaksDevReferenceColorBundle::PATH.'Resources/view',
-        'reference-color'
-    );
-
+return static function (FrameworkConfig $config) {
+    $config
+        ->translator()
+        ->paths([BaksDevReferenceColorBundle::PATH.implode(DIRECTORY_SEPARATOR, ['Resources', 'translations', ''])]); // .'Resources/translations/']);
 };
