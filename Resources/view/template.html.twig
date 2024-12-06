@@ -1,5 +1,10 @@
 {% trans_default_domain 'reference.color' %}
 {% if value %}
+
+    <span
+            class="badge rounded-pill"
+            style=" background-color: #{{ value }} !important;"
+    >&nbsp;</span>
     {{ value|trans }}
 {% else %}
     Неивестен
