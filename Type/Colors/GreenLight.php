@@ -1,17 +1,17 @@
 <?php
 /*
- *  Copyright 2023.  Baks.dev <admin@baks.dev>
- *
+ *  Copyright 2025.  Baks.dev <admin@baks.dev>
+ *  
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  *  copies of the Software, and to permit persons to whom the Software is furnished
  *  to do so, subject to the following conditions:
- *
+ *  
  *  The above copyright notice and this permission notice shall be included in all
  *  copies or substantial portions of the Software.
- *
+ *  
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  *  FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
@@ -34,7 +34,15 @@ final class GreenLight implements ColorsInterface
     /**
      * Светло-Зеленый
      */
-    public const COLOR = '90EE90';
+    public const string COLOR = '90EE90';
+
+    public const array HAYSTACK = [
+        'светло-зеленый',
+        'светло-зеленая',
+        'светло-зеленое',
+        'green',
+        '90EE90'
+    ];
 
     /** Возвращает значение (value) */
     public function getValue(): string
@@ -53,9 +61,23 @@ final class GreenLight implements ColorsInterface
      */
     public static function equals(string $color): bool
     {
-        $haystack = [mb_strtolower(self::COLOR), 'светло-зеленый', 'светло-зелёный', 'green'];
+        $color = str_replace('ё', 'e', $color);
 
-        return in_array(mb_strtolower($color), $haystack);
+        return array_any(self::HAYSTACK, static fn($item) => str_contains(mb_strtolower($color), mb_strtolower($item)));
     }
+
+    /**
+     * Метод фильтрует значение, удаляя его из строки
+     */
+    public static function filter(string $color): string
+    {
+        $color = str_replace('ё', 'e', $color);
+
+        $color = str_ireplace(self::HAYSTACK, '', $color);
+        $color = preg_replace('/\s/', ' ', $color);
+
+        return trim($color);
+    }
+
 
 }

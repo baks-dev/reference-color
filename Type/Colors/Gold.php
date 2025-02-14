@@ -1,17 +1,17 @@
 <?php
 /*
- *  Copyright 2023.  Baks.dev <admin@baks.dev>
- *
+ *  Copyright 2025.  Baks.dev <admin@baks.dev>
+ *  
  *  Permission is hereby granted, free of charge, to any person obtaining a copy
  *  of this software and associated documentation files (the "Software"), to deal
  *  in the Software without restriction, including without limitation the rights
  *  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  *  copies of the Software, and to permit persons to whom the Software is furnished
  *  to do so, subject to the following conditions:
- *
+ *  
  *  The above copyright notice and this permission notice shall be included in all
  *  copies or substantial portions of the Software.
- *
+ *  
  *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  *  FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
@@ -34,7 +34,14 @@ final class Gold implements ColorsInterface
     /**
      * Золотой
      */
-    public const COLOR = 'FFD700';
+    public const string COLOR = 'FFD700';
+
+    public const array HAYSTACK = [
+        'FFD700',
+        'золотой',
+        'золотая',
+        'gold'
+    ];
 
 
     /** Возвращает значение (value) */
@@ -55,9 +62,19 @@ final class Gold implements ColorsInterface
      */
     public static function equals(string $color): bool
     {
-        $haystack = [mb_strtolower(self::COLOR), 'золотой', 'gold'];
-
-        return in_array(mb_strtolower($color), $haystack);
+        return array_any(self::HAYSTACK, static fn($item) => str_contains(mb_strtolower($color), mb_strtolower($item)));
     }
+
+    /**
+     * Метод фильтрует значение, удаляя его из строки
+     */
+    public static function filter(string $color): string
+    {
+        $color = str_ireplace(self::HAYSTACK, '', $color);
+        $color = preg_replace('/\s/', ' ', $color);
+
+        return trim($color);
+    }
+
 
 }
