@@ -25,6 +25,7 @@ declare(strict_types=1);
 
 namespace BaksDev\Reference\Color\Type\Colors\Collection;
 
+use BaksDev\Reference\Color\Type\Colors\ColorsCollection;
 use BaksDev\Reference\Color\Type\Colors\ColorsInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
@@ -71,14 +72,7 @@ final class Pink implements ColorsInterface
      */
     public static function filter(string $color): string
     {
-        $haystack = array_map("mb_strtolower", self::HAYSTACK);
-
-        $color = mb_strtolower($color);
-        $color = (string) str_ireplace($haystack, '', $color);
-        $color = preg_replace('/\s+/', ' ', $color);
-        $color = trim($color);
-
-        return mb_ucfirst($color);
+        return ColorsCollection::filter(self::HAYSTACK, $color);
     }
 
 

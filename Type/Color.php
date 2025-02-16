@@ -24,6 +24,7 @@
 namespace BaksDev\Reference\Color\Type;
 
 use BaksDev\Reference\Color\Type\Colors\Collection\White;
+use BaksDev\Reference\Color\Type\Colors\ColorsCollection;
 use BaksDev\Reference\Color\Type\Colors\ColorsInterface;
 use BaksDev\Reference\Currency\Type\Currencies\Collection\CurrencyInterface;
 
@@ -111,7 +112,6 @@ final class Color
         return $case;
     }
 
-
     public static function getDeclared(): array
     {
         return array_filter(
@@ -131,14 +131,7 @@ final class Color
 
     public function filter(string $color): string
     {
-        $haystack = array_map("mb_strtolower", $this->color::HAYSTACK);
-
-        $color = mb_strtolower($color);
-        $color = (string) str_ireplace($haystack, '', $color);
-        $color = preg_replace('/\s+/', ' ', $color);
-        $color = trim($color);
-
-        return mb_ucfirst($color);
+        return ColorsCollection::filter($this->color::HAYSTACK, $color);
     }
 
 }
