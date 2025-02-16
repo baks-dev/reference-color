@@ -78,8 +78,9 @@ final class GreenDark implements ColorsInterface
         $color = mb_strtolower($color);
         $color = (string) str_ireplace($haystack, '', $color);
         $color = preg_replace('/\s/', ' ', $color);
+        $color = trim($color);
 
-        return trim($color);
+        return mb_ucfirst($color);
     }
 
 
