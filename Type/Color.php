@@ -26,14 +26,12 @@ namespace BaksDev\Reference\Color\Type;
 use BaksDev\Reference\Color\Type\Colors\Collection\White;
 use BaksDev\Reference\Color\Type\Colors\ColorsCollection;
 use BaksDev\Reference\Color\Type\Colors\ColorsInterface;
-use BaksDev\Reference\Currency\Type\Currencies\Collection\CurrencyInterface;
 
 final class Color
 {
     public const string TYPE = 'color_type';
 
     private ?ColorsInterface $color = null;
-
 
     public function __construct(ColorsInterface|self|string $color)
     {
