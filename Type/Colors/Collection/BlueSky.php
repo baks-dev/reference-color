@@ -23,25 +23,29 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Reference\Color\Type\Colors;
+namespace BaksDev\Reference\Color\Type\Colors\Collection;
 
-use BaksDev\Reference\Color\Type\Colors\Collection\ColorsInterface;
+use BaksDev\Reference\Color\Type\Colors\ColorsInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 #[AutoconfigureTag('baks.colors')]
-final class Red implements ColorsInterface
+final class BlueSky implements ColorsInterface
 {
     /**
-     * Красный
+     * Голубой
      */
-    public const string COLOR = 'FF0000';
+    public const string COLOR = '00BFFF';
 
     public const array HAYSTACK = [
-        'красный',
-        'красная',
-        'красное',
-        'red',
-        'FF0000'
+        '00BFFF',
+        'голубой',
+        'голубая',
+        'голубое',
+        'голубые',
+        'skyblue',
+        'sky-blue',
+        'bluesky',
+        'blue-sky'
     ];
 
     /** Возвращает значение (value) */
@@ -53,7 +57,7 @@ final class Red implements ColorsInterface
     /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
     public static function sort(): int
     {
-        return 4;
+        return 49;
     }
 
     /**
@@ -69,7 +73,10 @@ final class Red implements ColorsInterface
      */
     public static function filter(string $color): string
     {
-        $color = (string) str_ireplace(self::HAYSTACK, '', $color);
+        $haystack = array_map("mb_strtolower", self::HAYSTACK);
+
+        $color = mb_strtolower($color);
+        $color = (string) str_ireplace($haystack, '', $color);
         $color = preg_replace('/\s/', ' ', $color);
 
         return trim($color);

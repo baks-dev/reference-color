@@ -23,8 +23,8 @@
 
 namespace BaksDev\Reference\Color\Type;
 
-use BaksDev\Reference\Color\Type\Colors\Collection\ColorsInterface;
-use BaksDev\Reference\Color\Type\Colors\White;
+use BaksDev\Reference\Color\Type\Colors\Collection\White;
+use BaksDev\Reference\Color\Type\Colors\ColorsInterface;
 use BaksDev\Reference\Currency\Type\Currencies\Collection\CurrencyInterface;
 
 final class Color

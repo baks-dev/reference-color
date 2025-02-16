@@ -23,37 +23,41 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Reference\Color\Type\Colors;
+namespace BaksDev\Reference\Color\Type\Colors\Collection;
 
-use BaksDev\Reference\Color\Type\Colors\Collection\ColorsInterface;
+use BaksDev\Reference\Color\Type\Colors\ColorsInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 #[AutoconfigureTag('baks.colors')]
-final class White implements ColorsInterface
+final class Beige implements ColorsInterface
 {
     /**
-     * Белый
+     * бежевый
      */
-    public const string COLOR = 'FFFFFF';
+    public const string COLOR = 'F5F5DC';
 
     public const array HAYSTACK = [
-        'белый',
-        'белая',
-        'белое',
-        'white',
-        'FFFFFF',
+        'F5F5DC',
+        'бежевый',
+        'бежевая',
+        'бежевое',
+        'beige'
     ];
 
-    /** Возвращает значение (value) */
+    /**
+     * Возвращает значение (value)
+     */
     public function getValue(): string
     {
         return self::COLOR;
     }
 
-    /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
+    /**
+     * Сортировка (чем меньше число - тем первым в итерации будет значение)
+     */
     public static function sort(): int
     {
-        return 1;
+        return 12;
     }
 
     /**
@@ -69,10 +73,12 @@ final class White implements ColorsInterface
      */
     public static function filter(string $color): string
     {
-        $color = (string) str_ireplace(self::HAYSTACK, '', $color);
+        $haystack = array_map("mb_strtolower", self::HAYSTACK);
+
+        $color = mb_strtolower($color);
+        $color = (string) str_ireplace($haystack, '', $color);
         $color = preg_replace('/\s/', ' ', $color);
 
         return trim($color);
     }
-
 }

@@ -21,61 +21,35 @@
  *  THE SOFTWARE.
  */
 
-declare(strict_types=1);
-
 namespace BaksDev\Reference\Color\Type\Colors;
 
-use BaksDev\Reference\Color\Type\Colors\Collection\ColorsInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 #[AutoconfigureTag('baks.colors')]
-final class Green implements ColorsInterface
+interface ColorsInterface
 {
+    public const string COLOR = '';
+
+    public const array HAYSTACK = [];
+
     /**
-     * Зеленый
+     * Возвращает значение (value)
      */
-    public const string COLOR = '008000';
+    public function getValue(): string;
 
-    public const array HAYSTACK = [
-        'зеленый',
-        'green',
-        '008000'
-    ];
-
-    /** Возвращает значение (value) */
-    public function getValue(): string
-    {
-        return self::COLOR;
-    }
-
-    /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
-    public static function sort(): int
-    {
-        return 59;
-    }
+    /**
+     * Сортировка (чем меньше число - тем первым в итерации будет значение)
+     */
+    public static function sort(): int;
 
     /**
      * Проверяет, относится ли строка цвета к данному объекту
      */
-    public static function equals(string $color): bool
-    {
-        $color = str_replace('ё', 'e', $color);
-
-        return array_any(self::HAYSTACK, static fn($item) => str_contains(mb_strtolower($color), mb_strtolower($item)));
-    }
+    public static function equals(string $color): bool;
 
     /**
      * Метод фильтрует значение, удаляя его из строки
      */
-    public static function filter(string $color): string
-    {
-        $color = str_replace('ё', 'e', $color);
-
-        $color = (string) str_ireplace(self::HAYSTACK, '', $color);
-        $color = preg_replace('/\s/', ' ', $color);
-
-        return trim($color);
-    }
-
+    public static function filter(string $color): string;
 
 }

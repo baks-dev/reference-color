@@ -23,24 +23,25 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Reference\Color\Type\Colors;
+namespace BaksDev\Reference\Color\Type\Colors\Collection;
 
-use BaksDev\Reference\Color\Type\Colors\Collection\ColorsInterface;
+use BaksDev\Reference\Color\Type\Colors\ColorsInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 #[AutoconfigureTag('baks.colors')]
-final class Gray implements ColorsInterface
+final class Olive implements ColorsInterface
 {
     /**
-     * Серый
+     * Оливковый
      */
-    public const string COLOR = '808080';
+    public const string COLOR = '808000';
 
     public const array HAYSTACK = [
-        'серый',
-        'серая',
-        'gray',
-        '808080',
+        'оливковый',
+        'оливковая',
+        'оливковое',
+        'olive',
+        '808000'
     ];
 
     /** Возвращает значение (value) */
@@ -52,7 +53,7 @@ final class Gray implements ColorsInterface
     /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
     public static function sort(): int
     {
-        return 39;
+        return 13;
     }
 
     /**
@@ -68,10 +69,14 @@ final class Gray implements ColorsInterface
      */
     public static function filter(string $color): string
     {
-        $color = (string) str_ireplace(self::HAYSTACK, '', $color);
+        $haystack = array_map("mb_strtolower", self::HAYSTACK);
+
+        $color = mb_strtolower($color);
+        $color = (string) str_ireplace($haystack, '', $color);
         $color = preg_replace('/\s/', ' ', $color);
 
         return trim($color);
     }
+
 
 }

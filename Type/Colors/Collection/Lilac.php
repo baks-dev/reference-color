@@ -23,25 +23,25 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Reference\Color\Type\Colors;
+namespace BaksDev\Reference\Color\Type\Colors\Collection;
 
-use BaksDev\Reference\Color\Type\Colors\Collection\ColorsInterface;
+use BaksDev\Reference\Color\Type\Colors\ColorsInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 #[AutoconfigureTag('baks.colors')]
-final class Pink implements ColorsInterface
+final class Lilac implements ColorsInterface
 {
     /**
-     * Розовый
+     * Красный
      */
-    public const string COLOR = 'FFC0CB';
+    public const string COLOR = 'C8A2C8';
 
     public const array HAYSTACK = [
-        'розовый',
-        'розовая',
-        'розовое',
-        'pink',
-        'FFC0CB'
+        'сиреневый',
+        'сиреневая',
+        'сиреневое',
+        'lilac',
+        'C8A2C8'
     ];
 
     /** Возвращает значение (value) */
@@ -53,7 +53,7 @@ final class Pink implements ColorsInterface
     /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
     public static function sort(): int
     {
-        return 11;
+        return 16;
     }
 
     /**
@@ -69,11 +69,13 @@ final class Pink implements ColorsInterface
      */
     public static function filter(string $color): string
     {
-        $color = (string) str_ireplace(self::HAYSTACK, '', $color);
+        $haystack = array_map("mb_strtolower", self::HAYSTACK);
+
+        $color = mb_strtolower($color);
+        $color = (string) str_ireplace($haystack, '', $color);
         $color = preg_replace('/\s/', ' ', $color);
 
         return trim($color);
     }
-
 
 }

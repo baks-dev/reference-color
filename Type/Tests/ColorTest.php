@@ -26,8 +26,8 @@ declare(strict_types=1);
 namespace BaksDev\Reference\Color\Type\Tests;
 
 use BaksDev\Reference\Color\Type\Color;
-use BaksDev\Reference\Color\Type\Colors\Collection\ColorsCollection;
-use BaksDev\Reference\Color\Type\Colors\Collection\ColorsInterface;
+use BaksDev\Reference\Color\Type\Colors\ColorsCollection;
+use BaksDev\Reference\Color\Type\Colors\ColorsInterface;
 use BaksDev\Reference\Color\Type\ColorType;
 use BaksDev\Wildberries\Orders\Type\WildberriesStatus\Status\Collection\WildberriesStatusInterface;
 use Doctrine\DBAL\Platforms\AbstractPlatform;

@@ -21,35 +21,66 @@
  *  THE SOFTWARE.
  */
 
+declare(strict_types=1);
+
 namespace BaksDev\Reference\Color\Type\Colors\Collection;
 
+use BaksDev\Reference\Color\Type\Colors\ColorsInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 #[AutoconfigureTag('baks.colors')]
-interface ColorsInterface
+final class GreenLight implements ColorsInterface
 {
-    public const string COLOR = '';
-
-    public const array HAYSTACK = [];
-
     /**
-     * Возвращает значение (value)
+     * Светло-Зеленый
      */
-    public function getValue(): string;
+    public const string COLOR = '90EE90';
 
-    /**
-     * Сортировка (чем меньше число - тем первым в итерации будет значение)
-     */
-    public static function sort(): int;
+    public const array HAYSTACK = [
+        'светло-зеленый',
+        'светло-зеленая',
+        'светло-зеленое',
+        'green',
+        '90EE90'
+    ];
+
+    /** Возвращает значение (value) */
+    public function getValue(): string
+    {
+        return self::COLOR;
+    }
+
+    /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
+    public static function sort(): int
+    {
+        return 51;
+    }
 
     /**
      * Проверяет, относится ли строка цвета к данному объекту
      */
-    public static function equals(string $color): bool;
+    public static function equals(string $color): bool
+    {
+        $color = str_replace('ё', 'e', $color);
+
+        return array_any(self::HAYSTACK, static fn($item) => str_contains(mb_strtolower($color), mb_strtolower($item)));
+    }
 
     /**
      * Метод фильтрует значение, удаляя его из строки
      */
-    public static function filter(string $color): string;
+    public static function filter(string $color): string
+    {
+        $color = str_replace('ё', 'e', $color);
+
+        $haystack = array_map("mb_strtolower", self::HAYSTACK);
+
+        $color = mb_strtolower($color);
+        $color = (string) str_ireplace($haystack, '', $color);
+        $color = preg_replace('/\s/', ' ', $color);
+
+        return trim($color);
+    }
+
 
 }

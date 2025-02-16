@@ -23,25 +23,25 @@
 
 declare(strict_types=1);
 
-namespace BaksDev\Reference\Color\Type\Colors;
+namespace BaksDev\Reference\Color\Type\Colors\Collection;
 
-use BaksDev\Reference\Color\Type\Colors\Collection\ColorsInterface;
+use BaksDev\Reference\Color\Type\Colors\ColorsInterface;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
 #[AutoconfigureTag('baks.colors')]
-final class Violet implements ColorsInterface
+final class Red implements ColorsInterface
 {
     /**
-     * Фиолетовый
+     * Красный
      */
-    public const string COLOR = '800080';
+    public const string COLOR = 'FF0000';
 
     public const array HAYSTACK = [
-        'фиолетовый',
-        'фиолетовая',
-        'фиолетовое',
-        'violet',
-        '800080'
+        'красный',
+        'красная',
+        'красное',
+        'red',
+        'FF0000'
     ];
 
     /** Возвращает значение (value) */
@@ -53,7 +53,7 @@ final class Violet implements ColorsInterface
     /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
     public static function sort(): int
     {
-        return 10;
+        return 4;
     }
 
     /**
@@ -69,9 +69,13 @@ final class Violet implements ColorsInterface
      */
     public static function filter(string $color): string
     {
-        $color = (string) str_ireplace(self::HAYSTACK, '', $color);
+        $haystack = array_map("mb_strtolower", self::HAYSTACK);
+
+        $color = mb_strtolower($color);
+        $color = (string) str_ireplace($haystack, '', $color);
         $color = preg_replace('/\s/', ' ', $color);
 
         return trim($color);
     }
+
 }
