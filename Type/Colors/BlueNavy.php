@@ -75,7 +75,7 @@ final class BlueNavy implements ColorsInterface
      */
     public static function filter(string $color): string
     {
-        $color = str_ireplace(self::HAYSTACK, '', $color);
+        $color = (string) str_ireplace(self::HAYSTACK, '', $color);
         $color = preg_replace('/\s/', ' ', $color);
 
         return trim($color);

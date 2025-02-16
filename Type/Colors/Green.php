@@ -71,7 +71,7 @@ final class Green implements ColorsInterface
     {
         $color = str_replace('ё', 'e', $color);
 
-        $color = str_ireplace(self::HAYSTACK, '', $color);
+        $color = (string) str_ireplace(self::HAYSTACK, '', $color);
         $color = preg_replace('/\s/', ' ', $color);
 
         return trim($color);
