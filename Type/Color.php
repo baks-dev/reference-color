@@ -129,4 +129,16 @@ final class Color
         return $this->getColorValue() === $color->getColorValue();
     }
 
+    public function filter(string $color): string
+    {
+        $haystack = array_map("mb_strtolower", $this->color::HAYSTACK);
+
+        $color = mb_strtolower($color);
+        $color = (string) str_ireplace($haystack, '', $color);
+        $color = preg_replace('/\s/', ' ', $color);
+        $color = trim($color);
+
+        return mb_ucfirst($color);
+    }
+
 }
