@@ -38,6 +38,10 @@ final class Green implements ColorsInterface
 
     public const array HAYSTACK = [
         'зеленый',
+        'зеленая',
+        'зеленое',
+        'зеленые',
+
         'green',
         '008000'
     ];

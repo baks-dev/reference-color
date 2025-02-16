@@ -40,6 +40,8 @@ final class GreenDark implements ColorsInterface
         'темно-зеленый',
         'темно-зеленая',
         'темно-зеленое',
+        'темно-зеленые',
+
         'green-dark',
         '006400',
     ];

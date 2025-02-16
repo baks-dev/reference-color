@@ -40,6 +40,8 @@ final class Violet implements ColorsInterface
         'фиолетовый',
         'фиолетовая',
         'фиолетовое',
+        'фиолетовые',
+
         'violet',
         '800080'
     ];

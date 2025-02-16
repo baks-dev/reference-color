@@ -40,6 +40,8 @@ final class Pink implements ColorsInterface
         'розовый',
         'розовая',
         'розовое',
+        'розовые',
+
         'pink',
         'FFC0CB'
     ];

@@ -40,6 +40,8 @@ final class Lilac implements ColorsInterface
         'сиреневый',
         'сиреневая',
         'сиреневое',
+        'сиреневые',
+
         'lilac',
         'C8A2C8'
     ];

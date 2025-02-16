@@ -40,6 +40,8 @@ final class Yellow implements ColorsInterface
         'желтый',
         'желтая',
         'желтое',
+        'желтые',
+
         'yellow',
         'FFFF00'
     ];

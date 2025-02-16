@@ -37,12 +37,13 @@ final class Blue implements ColorsInterface
     public const string COLOR = '0000FF';
 
     public const array HAYSTACK = [
-        '0000FF',
         'синий',
         'синяя',
         'синие',
         'синее',
-        'blue'
+
+        'blue',
+        '0000FF',
     ];
 
     /** Возвращает значение (value) */

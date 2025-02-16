@@ -40,6 +40,8 @@ final class GreenLight implements ColorsInterface
         'светло-зеленый',
         'светло-зеленая',
         'светло-зеленое',
+        'светло-зеленые',
+
         'green',
         '90EE90'
     ];

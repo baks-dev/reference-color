@@ -40,6 +40,8 @@ final class White implements ColorsInterface
         'белый',
         'белая',
         'белое',
+        'белые',
+
         'white',
         'FFFFFF',
     ];

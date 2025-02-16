@@ -37,15 +37,17 @@ final class BlueSky implements ColorsInterface
     public const string COLOR = '00BFFF';
 
     public const array HAYSTACK = [
-        '00BFFF',
+
         'голубой',
         'голубая',
         'голубое',
         'голубые',
+
         'skyblue',
         'sky-blue',
         'bluesky',
-        'blue-sky'
+        'blue-sky',
+        '00BFFF',
     ];
 
     /** Возвращает значение (value) */

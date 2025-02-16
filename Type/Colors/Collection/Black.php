@@ -37,12 +37,13 @@ final class Black implements ColorsInterface
     public const string COLOR = '000000';
 
     public const array HAYSTACK = [
-        '000000',
         'черный',
         'черная',
         'черные',
         'черное',
-        'black'
+
+        'black',
+        '000000',
     ];
 
 

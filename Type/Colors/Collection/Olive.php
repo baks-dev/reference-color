@@ -40,6 +40,8 @@ final class Olive implements ColorsInterface
         'оливковый',
         'оливковая',
         'оливковое',
+        'оливковые',
+
         'olive',
         '808000'
     ];

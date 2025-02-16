@@ -40,6 +40,8 @@ final class Orange implements ColorsInterface
         'оранжевый',
         'оранжевая',
         'оранжевое',
+        'оранжевые',
+
         'orange',
         'FFA500'
     ];

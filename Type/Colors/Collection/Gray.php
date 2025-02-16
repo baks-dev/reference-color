@@ -38,7 +38,10 @@ final class Gray implements ColorsInterface
 
     public const array HAYSTACK = [
         'серый',
+        'серые',
+        'серое',
         'серая',
+
         'gray',
         '808080',
     ];

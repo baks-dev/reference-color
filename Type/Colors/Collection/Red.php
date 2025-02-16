@@ -40,6 +40,8 @@ final class Red implements ColorsInterface
         'красный',
         'красная',
         'красное',
+        'красные',
+
         'red',
         'FF0000'
     ];

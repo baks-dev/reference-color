@@ -37,10 +37,12 @@ final class Beige implements ColorsInterface
     public const string COLOR = 'F5F5DC';
 
     public const array HAYSTACK = [
-        'F5F5DC',
         'бежевый',
         'бежевая',
         'бежевое',
+        'бежевые',
+
+        'F5F5DC',
         'beige'
     ];
 

@@ -40,6 +40,8 @@ final class RedCrimson implements ColorsInterface
         'малиновый',
         'малиновая',
         'малиновое',
+        'малиновые',
+
         'crimson',
         'DC143C',
     ];

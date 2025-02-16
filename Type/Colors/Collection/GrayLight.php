@@ -40,6 +40,8 @@ final class GrayLight implements ColorsInterface
         'светло-серый',
         'светло-серая',
         'светло-серое',
+        'светло-серые',
+
         'light-grey',
         'D3D3D3'
     ];

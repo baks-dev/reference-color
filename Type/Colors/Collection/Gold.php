@@ -37,10 +37,13 @@ final class Gold implements ColorsInterface
     public const string COLOR = 'FFD700';
 
     public const array HAYSTACK = [
-        'FFD700',
         'золотой',
         'золотая',
-        'gold'
+        'золотые',
+        'золотое',
+
+        'gold',
+        'FFD700',
     ];
 
 
