@@ -37,15 +37,10 @@ use Symfony\Component\HttpKernel\Event\ControllerEvent;
  */
 #[AsEventListener(event: ControllerEvent::class)]
 #[AsEventListener(event: ConsoleEvents::COMMAND)]
-final class ColorListener
+final readonly class ColorListener
 {
-    private ColorsCollection $collection;
 
-
-    public function __construct(ColorsCollection $collection)
-    {
-        $this->collection = $collection;
-    }
+    public function __construct(private ColorsCollection $collection) {}
 
 
     public function onKernelController(ControllerEvent $event): void

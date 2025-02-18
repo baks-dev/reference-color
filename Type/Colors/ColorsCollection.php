@@ -27,16 +27,12 @@ namespace BaksDev\Reference\Color\Type\Colors;
 
 use Symfony\Component\DependencyInjection\Attribute\AutowireIterator;
 
-final class ColorsCollection
+final readonly class ColorsCollection
 {
-    private iterable $colors;
 
     public function __construct(
-        #[AutowireIterator('baks.colors', defaultPriorityMethod: 'sort')] iterable $colors,
-    )
-    {
-        $this->colors = $colors;
-    }
+        #[AutowireIterator('baks.colors', defaultPriorityMethod: 'sort')] private iterable $colors,
+    ) {}
 
 
     /** Возвращает массив из значений ColorInterface */
