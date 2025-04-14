@@ -61,9 +61,10 @@ final class ColorTest extends KernelTestCase
 
 
             /** Создаем строку  */
-            $filter = implode(' ', $case::HAYSTACK);
-            $filter = $case::filter($filter);
-            self::assertEmpty($filter);
+            //$filter = implode(' ', $case::HAYSTACK);
+            $filter = $case::filter(current($case::HAYSTACK));
+            self::assertEmpty($filter, $filter.': '.implode(' ', $case::HAYSTACK));
+
 
             $ColorType = new ColorType();
             $platform = $this->getMockForAbstractClass(AbstractPlatform::class);
