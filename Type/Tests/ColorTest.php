@@ -67,7 +67,9 @@ final class ColorTest extends KernelTestCase
 
 
             $ColorType = new ColorType();
-            $platform = $this->getMockForAbstractClass(AbstractPlatform::class);
+            $platform = $this
+                ->getMockBuilder(AbstractPlatform::class)
+                ->getMock();
 
             $convertToDatabase = $ColorType->convertToDatabaseValue($Color, $platform);
             self::assertEquals($Color->getColorValue(), $convertToDatabase);
