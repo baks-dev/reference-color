@@ -31,13 +31,12 @@ use BaksDev\Reference\Color\Type\Colors\ColorsInterface;
 use BaksDev\Reference\Color\Type\ColorType;
 use BaksDev\Wildberries\Orders\Type\WildberriesStatus\Status\Collection\WildberriesStatusInterface;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use PHPUnit\Framework\Attributes\Group;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\Attribute\When;
 
-/**
- * @group reference-color
- */
 #[When(env: 'test')]
+#[Group('reference-color')]
 final class ColorTest extends KernelTestCase
 {
     public function testUseCase(): void
