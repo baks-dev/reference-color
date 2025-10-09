@@ -165,4 +165,5 @@ return [
     'B6B6B6' => 'Металл',
     '060607' => 'Blue-black',
     '947862' => 'Khaki',
+    'E6AF54' => 'Leopard',
 ];
