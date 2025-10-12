@@ -166,4 +166,5 @@ return [
     '060607' => 'Blue-black',
     '947862' => 'Khaki',
     'E6AF54' => 'Leopard',
+    '60020E' => 'Bordo',
 ];
