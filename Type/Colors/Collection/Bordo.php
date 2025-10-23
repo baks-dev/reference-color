@@ -35,7 +35,7 @@ final class Bordo implements ColorsInterface
     /**
      * Бордо
      */
-    public const string COLOR = '60020e';
+    public const string COLOR = '60020E';
 
     public const array HAYSTACK = [
         'бордо',
@@ -50,6 +50,7 @@ final class Bordo implements ColorsInterface
 
         'bordo',
         '60020e',
+        '60020E',
     ];
 
     /** Возвращает значение (value) */
