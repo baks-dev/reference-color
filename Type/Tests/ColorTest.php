@@ -45,7 +45,9 @@ final class ColorTest extends KernelTestCase
         $ColorsCollection = self::getContainer()->get(ColorsCollection::class);
         $cases = $ColorsCollection->cases();
 
-        self::assertCount(25, $cases);
+
+        $colors = 28; // ВСЕГО количество добавленных цветов
+        self::assertCount($colors, $cases);
 
         /** @var ColorsInterface $case */
         foreach($cases as $case)
