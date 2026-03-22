@@ -34,6 +34,20 @@ final readonly class ColorsCollection
         #[AutowireIterator('baks.colors', defaultPriorityMethod: 'sort')] private iterable $colors,
     ) {}
 
+    /**
+     * Метод фильтрует значение, удаляя его из строки
+     */
+    public static function filter(array $haystack, string $color): string
+    {
+        $haystack = array_map("mb_strtolower", $haystack);
+
+        $color = mb_strtolower($color);
+        $color = (string) str_ireplace($haystack, '', $color);
+        $color = preg_replace('/\s+/', ' ', $color);
+        $color = trim($color);
+
+        return mb_ucfirst($color);
+    }
 
     /** Возвращает массив из значений ColorInterface */
     public function cases(): array
@@ -48,22 +62,6 @@ final readonly class ColorsCollection
         ksort($case);
 
         return $case;
-    }
-
-
-    /**
-     * Метод фильтрует значение, удаляя его из строки
-     */
-    public static function filter(array $haystack, string $color): string
-    {
-        $haystack = array_map("mb_strtolower", $haystack);
-
-        $color = mb_strtolower($color);
-        $color = (string) str_ireplace($haystack, '', $color);
-        $color = preg_replace('/\s+/', ' ', $color);
-        $color = trim($color);
-
-        return mb_ucfirst($color);
     }
 
 }

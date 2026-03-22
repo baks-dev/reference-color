@@ -44,14 +44,8 @@ final class GreenLight implements ColorsInterface
         'светло-зеленые',
 
         'green',
-        '90EE90'
+        '90EE90',
     ];
-
-    /** Возвращает значение (value) */
-    public function getValue(): string
-    {
-        return self::COLOR;
-    }
 
     /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
     public static function sort(): int
@@ -77,6 +71,12 @@ final class GreenLight implements ColorsInterface
         $color = str_replace('ё', 'e', $color);
 
         return ColorsCollection::filter(self::HAYSTACK, $color);
+    }
+
+    /** Возвращает значение (value) */
+    public function getValue(): string
+    {
+        return self::COLOR;
     }
 
 

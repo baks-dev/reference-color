@@ -52,6 +52,17 @@ final class ColorExtension extends AbstractExtension
         }
     }
 
+    public function render(Environment $twig, ?string $value): string
+    {
+        try
+        {
+            return $twig->render('@Template/Color/render.html.twig', ['value' => $value]);
+        }
+        catch(LoaderError $loaderError)
+        {
+            return $twig->render('@reference-color/render.html.twig', ['value' => $value]);
+        }
+    }
 
     public function template(Environment $twig, ?string $value): string
     {
@@ -62,18 +73,6 @@ final class ColorExtension extends AbstractExtension
         catch(LoaderError $loaderError)
         {
             return $twig->render('@reference-color/template.html.twig', ['value' => $value]);
-        }
-    }
-
-    public function render(Environment $twig, ?string $value): string
-    {
-        try
-        {
-            return $twig->render('@Template/Color/render.html.twig', ['value' => $value]);
-        }
-        catch(LoaderError $loaderError)
-        {
-            return $twig->render('@reference-color/render.html.twig', ['value' => $value]);
         }
     }
 

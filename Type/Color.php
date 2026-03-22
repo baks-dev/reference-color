@@ -73,26 +73,34 @@ final class Color
         $this->color = new White();
     }
 
-
-    public function __toString(): string
-    {
-        return $this->color ? $this->color->getValue() : 'FFFFFF';
-    }
-
-
     /** Возвращает значение ColorsInterface */
     public function getColor(): ?ColorsInterface
     {
         return $this->color ?: new White();
     }
 
+    public static function getDeclared(): array
+    {
+        return array_filter(
+            get_declared_classes(),
+            static function($className) {
+                return in_array(ColorsInterface::class, class_implements($className), true);
+            },
+        );
+    }
+
+    public function equals(mixed $color): bool
+    {
+        $color = new self($color);
+
+        return $this->getColorValue() === $color->getColorValue();
+    }
 
     /** Возвращает значение ColorsInterface */
     public function getColorValue(): ?string
     {
         return $this->color ? $this->color->getValue() : 'FFFFFF';
     }
-
 
     public static function cases(): array
     {
@@ -110,21 +118,9 @@ final class Color
         return $case;
     }
 
-    public static function getDeclared(): array
+    public function __toString(): string
     {
-        return array_filter(
-            get_declared_classes(),
-            static function ($className) {
-                return in_array(ColorsInterface::class, class_implements($className), true);
-            }
-        );
-    }
-
-    public function equals(mixed $color): bool
-    {
-        $color = new self($color);
-
-        return $this->getColorValue() === $color->getColorValue();
+        return $this->color ? $this->color->getValue() : 'FFFFFF';
     }
 
     public function filter(string $color): string

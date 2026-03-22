@@ -53,12 +53,6 @@ final class Bordo implements ColorsInterface
         '60020E',
     ];
 
-    /** Возвращает значение (value) */
-    public function getValue(): string
-    {
-        return self::COLOR;
-    }
-
     /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
     public static function sort(): int
     {
@@ -79,6 +73,12 @@ final class Bordo implements ColorsInterface
     public static function filter(string $color): string
     {
         return ColorsCollection::filter(self::HAYSTACK, $color);
+    }
+
+    /** Возвращает значение (value) */
+    public function getValue(): string
+    {
+        return self::COLOR;
     }
 
 }

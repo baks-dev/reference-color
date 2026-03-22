@@ -44,14 +44,8 @@ final class Pink implements ColorsInterface
         'розовые',
 
         'pink',
-        'FFC0CB'
+        'FFC0CB',
     ];
-
-    /** Возвращает значение (value) */
-    public function getValue(): string
-    {
-        return self::COLOR;
-    }
 
     /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
     public static function sort(): int
@@ -73,6 +67,12 @@ final class Pink implements ColorsInterface
     public static function filter(string $color): string
     {
         return ColorsCollection::filter(self::HAYSTACK, $color);
+    }
+
+    /** Возвращает значение (value) */
+    public function getValue(): string
+    {
+        return self::COLOR;
     }
 
 

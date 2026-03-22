@@ -44,14 +44,8 @@ final class Olive implements ColorsInterface
         'оливковые',
 
         'olive',
-        '808000'
+        '808000',
     ];
-
-    /** Возвращает значение (value) */
-    public function getValue(): string
-    {
-        return self::COLOR;
-    }
 
     /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
     public static function sort(): int
@@ -73,6 +67,12 @@ final class Olive implements ColorsInterface
     public static function filter(string $color): string
     {
         return ColorsCollection::filter(self::HAYSTACK, $color);
+    }
+
+    /** Возвращает значение (value) */
+    public function getValue(): string
+    {
+        return self::COLOR;
     }
 
 

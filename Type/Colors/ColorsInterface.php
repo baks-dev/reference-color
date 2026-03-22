@@ -33,11 +33,6 @@ interface ColorsInterface
     public const array HAYSTACK = [];
 
     /**
-     * Возвращает значение (value)
-     */
-    public function getValue(): string;
-
-    /**
      * Сортировка (чем меньше число - тем первым в итерации будет значение)
      */
     public static function sort(): int;
@@ -51,5 +46,10 @@ interface ColorsInterface
      * Метод фильтрует значение, удаляя его из строки
      */
     public static function filter(string $color): string;
+
+    /**
+     * Возвращает значение (value)
+     */
+    public function getValue(): string;
 
 }

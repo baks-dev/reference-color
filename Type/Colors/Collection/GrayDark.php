@@ -49,16 +49,8 @@ final class GrayDark implements ColorsInterface
         'тёмно-серые',
 
         'dark-grey',
-        'A9A9A9'
+        'A9A9A9',
     ];
-
-    /**
-     * Возвращает значение (value)
-     */
-    public function getValue(): string
-    {
-        return self::COLOR;
-    }
 
     /**
      * Сортировка (чем меньше число - тем первым в итерации будет значение)
@@ -82,6 +74,14 @@ final class GrayDark implements ColorsInterface
     public static function filter(string $color): string
     {
         return ColorsCollection::filter(self::HAYSTACK, $color);
+    }
+
+    /**
+     * Возвращает значение (value)
+     */
+    public function getValue(): string
+    {
+        return self::COLOR;
     }
 
 }

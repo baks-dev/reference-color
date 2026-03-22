@@ -40,14 +40,8 @@ final class Khaki implements ColorsInterface
     public const array HAYSTACK = [
         'хаки',
         'khaki',
-        '947862'
+        '947862',
     ];
-
-    /** Возвращает значение (value) */
-    public function getValue(): string
-    {
-        return self::COLOR;
-    }
 
     /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
     public static function sort(): int
@@ -69,5 +63,11 @@ final class Khaki implements ColorsInterface
     public static function filter(string $color): string
     {
         return ColorsCollection::filter(self::HAYSTACK, $color);
+    }
+
+    /** Возвращает значение (value) */
+    public function getValue(): string
+    {
+        return self::COLOR;
     }
 }

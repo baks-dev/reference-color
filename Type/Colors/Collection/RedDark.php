@@ -51,14 +51,8 @@ final class RedDark implements ColorsInterface
         'темно-красный',
         'темно-красные',
         'maroon',
-        '800000'
+        '800000',
     ];
-
-    /** Возвращает значение (value) */
-    public function getValue(): string
-    {
-        return self::COLOR;
-    }
 
     /** Сортировка (чем меньше число - тем первым в итерации будет значение) */
     public static function sort(): int
@@ -80,6 +74,12 @@ final class RedDark implements ColorsInterface
     public static function filter(string $color): string
     {
         return ColorsCollection::filter(self::HAYSTACK, $color);
+    }
+
+    /** Возвращает значение (value) */
+    public function getValue(): string
+    {
+        return self::COLOR;
     }
 
 }
