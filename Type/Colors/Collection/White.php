@@ -60,7 +60,7 @@ final class White implements ColorsInterface
      */
     public static function equals(string $color): bool
     {
-        return array_any(self::HAYSTACK, static fn($item) => str_contains(mb_strtolower($color), mb_strtolower($item)));
+        return array_any(self::HAYSTACK, static fn($item) => (mb_strtolower($color) === mb_strtolower($item)));
     }
 
     /**
