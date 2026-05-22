@@ -35,13 +35,13 @@ final class Mint implements ColorsInterface
     /**
      * Мятный
      */
-    public const string COLOR = '3eb489';
+    public const string COLOR = '3EB489';
 
     public const array HAYSTACK = [
         'мята',
         'мятный',
 
-        '3eb489',
+        '3EB489',
         'mint',
     ];
 
