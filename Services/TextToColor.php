@@ -173,22 +173,33 @@ final class TextToColor
 
 
     /** Преобразует текстовое значение цвета в HEX */
-    public function txtToCode(string $txt): string
+    public function txtToCode(string $txt): ?string
     {
-        $txt = mb_strtolower($txt);
         $data = array_flip($this->data);
 
-        return $data[$txt];
+        if(isset($data[$txt]))
+        {
+            return $data[$txt];
+        }
+
+        $txt = mb_strtolower($txt);
+
+        return $data[$txt] ?? null;
     }
 
 
     /** Преобразует HEX цвета в текст */
-    public function codeToTxt(string $txt): string
+    public function codeToTxt(string $txt): ?string
     {
+        if(isset($this->data[$txt]))
+        {
+            return $this->data[$txt];
+        }
+
         $txt = mb_strtolower($txt);
         $data = $this->data;
 
-        return $data[$txt];
+        return $data[$txt] ?? null;
     }
 
 }
