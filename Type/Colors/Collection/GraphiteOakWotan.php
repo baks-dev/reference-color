@@ -53,7 +53,7 @@ final class GraphiteOakWotan implements ColorsInterface
      */
     public static function sort(): int
     {
-        return 10;
+        return 9;
     }
 
     /**
