@@ -39,6 +39,7 @@ final class OakSonoma implements ColorsInterface
 
     public const array HAYSTACK = [
         'дуб сонома',
+        'дуб, сонома',
         'дуб-сонома',
         'E3D5CA',
         'sonoma',

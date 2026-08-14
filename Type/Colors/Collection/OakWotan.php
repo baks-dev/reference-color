@@ -39,6 +39,7 @@ final class OakWotan implements ColorsInterface
 
     public const array HAYSTACK = [
         'дуб вотан',
+        'дуб, вотан',
         'дуб-вотан',
         'DEB887',
         'wotan',

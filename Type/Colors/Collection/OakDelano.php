@@ -39,6 +39,7 @@ final class OakDelano implements ColorsInterface
 
     public const array HAYSTACK = [
         'дуб делано',
+        'дуб, делано',
         'дуб-делано',
 
         'D8B589',
