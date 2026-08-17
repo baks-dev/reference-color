@@ -69,6 +69,24 @@ final class Color
             }
         }
 
+        /** Если цвет не найден - проверяем, не является ли цвет перечислением */
+
+        $colorArray = explode(',', $color);
+        $colorArray = current($colorArray);
+        $color = trim($colorArray);
+
+
+        /** @var ColorsInterface $declare */
+        foreach(self::getDeclared() as $declare)
+        {
+            if($declare::equals($color))
+            {
+                $this->color = new $declare();
+                return;
+            }
+        }
+
+
         /** По умолчанию - белый цвет */
         $this->color = new White();
     }
